@@ -1,0 +1,12 @@
+$ git log
+commit 53840c3393cbe68b12dd67da3237cdc41caf576e
+Author: Maxim Aderiha <maxima290898@gmail.com>
+Date:   Sun Feb 12 22:54:26 2017 +0300
+
+    add status.txt and first code lock
+
+commit 792f0e592004669ddfd5b5b86178bcacc4e7f174
+Author: Maxim Aderiha <maxima290898@gmail.com>
+Date:   Sun Feb 12 22:47:26 2017 +0300
+
+    add .gitignore
