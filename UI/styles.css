@@ -1,0 +1,313 @@
+/*общие*/
+body {
+    font: 12px Tahoma, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+}
+
+p {
+    margin: 20px 0;
+}
+
+/*общие*/
+
+/*шапка*/
+header {
+    background: #fff;
+}
+
+.header {
+    background-color: #ffffff;
+    position: relative;
+    max-width: 1024px;
+    height: 57px;
+    margin: auto;
+}
+
+.box-bars {
+    position: absolute;
+    width: 40px;
+    height: 45px;
+}
+
+.icon-bars {
+    position: absolute;
+    margin-top: 4px;
+    margin-right: 10px;
+    font-size: 32px;
+    color: #3C3F41;
+}
+
+.icon-bars:hover {
+    color: #6D7174;
+}
+
+.box-in {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    right: 10px;
+}
+
+.icon-in {
+    position: absolute;
+    font-size: 25px;
+    margin-top: 12px;
+    color: #3C3F41;
+    z-index: 1;
+
+}
+
+.icon-in:hover {
+    color: #6D7174;
+}
+
+.logo-black {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+}
+
+.box {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+}
+
+.container-search {
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    z-index: 3;
+}
+
+.container-search input#search {
+    width: 0px;
+    height: 35px;
+    background: #6D7174;
+    border: none;
+    font-size: 12pt;
+    float: right;
+    padding-left: 0;
+    border-radius: 5px;
+    color: #fff;
+    transition: width .55s ease;
+}
+
+.container-search .icon {
+    position: absolute;
+    font-size: 20px;
+    margin-left: 277px;
+    margin-top: 5px;
+    z-index: 5;
+    color: #3C3F41;
+}
+
+.container-search input#search:focus, .container-search input#search:active {
+    outline: none;
+    width: 300px;
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+.container-search:hover input#search {
+    width: 300px;
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+.container-search:hover .icon {
+    color: #3C3F41;
+}
+
+/*шапка*/
+
+/*меню тегов*/
+header .tags {
+    width: 100%;
+    text-align: center; /*пытаемся выровнять содержимое по центру */
+    background: #3C3F41; /* для наглядности обозначаем родителя */
+    /*float: left; !* чтоб высота родителя была с учетом плавающих потомков *!*/
+}
+
+header .tags li:hover {
+    transition: background-color .7s ease;
+    background-color: #ffffff;
+}
+
+header .tags li:hover a {
+    transition: background-color .7s ease;
+    color: #3C3F41;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+nav li {
+    list-style-position: inside;
+    font: 14px 'Oswald', sans-serif;
+    padding: 10px;
+}
+
+ul li {
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 0;
+}
+
+ul a {
+    color: #ffffff;
+}
+
+/*меню тегов*/
+
+/*фиксируем шапку*/
+.fixed {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    left: 0px;
+    padding: 0;
+    z-index: 1;
+}
+
+/*фиксируем шапку*/
+
+/*контент*/
+.content {
+    position: relative;
+    width: 1024px;
+    padding-top: 25px;
+    display: inline-block;
+}
+
+.content .text {
+
+    padding: 0 10px;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    color: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: rgba(0, 0, 0, .6);
+
+}
+
+.text a {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.content p {
+    font-size: 18px;
+    text-align: left;
+}
+
+.content .author {
+    margin: 7px 0;
+    font-size: 14px;
+    float: left;
+    width: 20%;
+}
+
+.tab_tags {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 15px;
+    text-align: right;
+    /*float: right;*/
+    width: 80%;
+}
+
+.tab_tags li:hover {
+    background-color: #ffffff;
+    transition: background-color .7s ease;
+
+}
+
+.tab_tags li:hover a {
+    color: #3C3F41;
+    transition: background-color .7s ease;
+}
+
+.tab_tags ul {
+    margin: 0;
+}
+
+/*контент*/
+
+/*показать ещё*/
+.trans {
+    width: 100%;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.trans a {
+    text-decoration: none;
+    color: #3C3F41;
+    padding: 12px;
+}
+
+.trans a:hover {
+    color: #ffffff;
+    background-color: #3C3F41;
+    transition: background-color .7s ease;
+}
+
+/*показать ещё*/
+
+/*футер*/
+footer {
+    background: #3C3F41;
+}
+
+.footer {
+    position: relative;
+    max-width: 1024px;
+    height: 200px;
+    margin: auto;
+    color: #ffffff;
+}
+
+.logo-white {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.contacts {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    text-align: right;
+    margin: 0px;
+}
+
+.contacts p {
+    font-size: 18px;
+}
+
+.contacts p.data {
+    font-size: 14px;
+}
+
+/*футер*/
