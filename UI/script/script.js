@@ -6,9 +6,7 @@ var articles = [
     {
         id: ++startID,
         title: 'Tesla установила рекорд по дальности пробега электрокара.',
-        summary: 'Увеличить дальность пробега производитель смог за счет новых 100-киловаттовых батарей.Компания Tesla' +
-        ' начала оснащать свои электрокары - седан Model S и вседорожник Model X - 100-киловаттными батареями. Их мощь' +
-        ' в сочетании с относительно невысоким потреблениемэнергии дают автомобилям самый большой запас хода...',
+        summary: 'Увеличить дальность пробега производитель смог за счет новых 100-киловаттовых батарей',
         createdAt: new Date(2017, 1, 28),
         author: 'Адериха М. А.',
         content: 'Увеличить дальность пробега производитель смог за счет новых 100-киловаттовых батарей.Компания Tesla' +
@@ -21,7 +19,7 @@ var articles = [
         title: 'Доходы EPAM в 2016 году превысили миллиард долларов.',
         summary: 'Компания EPAM опубликовала финансовый отчет по итогам 2016 года. За отчетный период выручка разработчика' +
         ' ПО достигла 1,16 миллиарда долларов, что почти на 27% больше по сравнению с 2015 годом...',
-        createdAt: new Date(2017, 1, 28),
+        createdAt: new Date(2016, 1, 28),
         author: 'Адериха М. А.',
         content: 'Компания EPAM опубликовала финансовый отчет по итогам 2016 года. За отчетный период выручка разработчика' +
         ' ПО достигла 1,16 миллиарда долларов, что почти на 27% больше по сравнению с 2015 годом...',
@@ -46,7 +44,7 @@ var articles = [
         summary: 'В феврале 2017 года Станислав Гладченко впервые стал призером этапа Кубка мира по фристайлу,' +
         ' атеперь готовится к турниру в Раубичах, где год назад был четвертым. SPORT.TUT.BY рассказывает омолодом' +
         ' лидере белорусской команды по лыжной акробатике, который в перерывах между тренировками играет в покер на деньги...',
-        createdAt: new Date(2017, 1, 28),
+        createdAt: new Date(2017, 1, 2),
         author: 'Иванов П. А.',
         content: 'В феврале 2017 года Станислав Гладченко впервые стал призером этапа Кубка мира по фристайлу,' +
         ' атеперь готовится к турниру в Раубичах, где год назад был четвертым. SPORT.TUT.BY рассказывает омолодом' +
@@ -179,7 +177,8 @@ function getArticles(skip, top, filterConfig) {
     } else {
         if (filterConfig.author != undefined && filterConfig.tags != undefined && filterConfig.createdAt != undefined) {
             for (var i = skip; i < articles.length && i < top + skip; i++) {
-                if (filterConfig.author == articles[i].author && filterConfig.tags == articles[i].tags && filterConfig.createdAt == articles[i].createdAt) {
+                if (filterConfig.author == articles[i].author && findTag(filterConfig.tags, articles[i].tags)
+                    && filterConfig.createdAt.getTime() == articles[i].createdAt.getTime()) {
                     newArticles[index] = articles[i];
                     index++;
                 }
@@ -188,7 +187,7 @@ function getArticles(skip, top, filterConfig) {
 
         if (filterConfig.author != undefined && filterConfig.tags != undefined && filterConfig.createdAt == undefined) {
             for (var i = skip; i < articles.length && i < top + skip; i++) {
-                if (filterConfig.author == articles[i].author && filterConfig.tags == articles[i].tags) {
+                if (filterConfig.author == articles[i].author && findTag(filterConfig.tags, articles[i].tags)) {
                     newArticles[index] = articles[i];
                     index++;
                 }
@@ -197,7 +196,7 @@ function getArticles(skip, top, filterConfig) {
 
         if (filterConfig.author != undefined && filterConfig.tags == undefined && filterConfig.createdAt != undefined) {
             for (var i = skip; i < articles.length && i < top + skip; i++) {
-                if (filterConfig.author == articles[i].author && filterConfig.createdAt == articles[i].createdAt) {
+                if (filterConfig.author == articles[i].author && filterConfig.createdAt.getTime() == articles[i].createdAt.getTime()) {
                     newArticles[index] = articles[i];
                     index++;
                 }
@@ -215,7 +214,7 @@ function getArticles(skip, top, filterConfig) {
 
         if (filterConfig.author == undefined && filterConfig.tags != undefined && filterConfig.createdAt != undefined) {
             for (var i = skip; i < articles.length && i < top + skip; i++) {
-                if (filterConfig.tags == articles[i].tags && filterConfig.createdAt == articles[i].createdAt) {
+                if (findTag(filterConfig.tags, articles[i].tags) && filterConfig.createdAt.getTime() == articles[i].createdAt.getTime()) {
                     newArticles[index] = articles[i];
                     index++;
                 }
@@ -224,7 +223,7 @@ function getArticles(skip, top, filterConfig) {
 
         if (filterConfig.author == undefined && filterConfig.tags != undefined && filterConfig.createdAt == undefined) {
             for (var i = skip; i < articles.length && i < top + skip; i++) {
-                if (filterConfig.tags == articles[i].tags) {
+                if (findTag(filterConfig.tags, articles[i].tags)) {
                     newArticles[index] = articles[i];
                     index++;
                 }
@@ -233,7 +232,7 @@ function getArticles(skip, top, filterConfig) {
 
         if (filterConfig.author == undefined && filterConfig.tags == undefined && filterConfig.createdAt != undefined) {
             for (var i = skip; i < articles.length && i < top + skip; i++) {
-                if (filterConfig.createdAt == articles[i].createdAt) {
+                if (filterConfig.createdAt.getTime() == articles[i].createdAt.getTime()) {
                     newArticles[index] = articles[i];
                     index++;
                 }
@@ -245,6 +244,15 @@ function getArticles(skip, top, filterConfig) {
         return b.createdAt - a.createdAt;
     })
     return newArticles;
+}
+
+function findTag(tag, tags) {
+    for (var i = 0; i < tags.length; i++) {
+        if (tag == tags[i]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function getArticle(id) {
@@ -267,16 +275,12 @@ function isArticle(id) {
 }
 
 function validateArticle(article) {
-    if (article.id != undefined && typeof article.id == "number" &&
-        article.title != undefined && typeof  article.title == "string" && article.title.length > 0 &&
-        article.title.length <= 100 &&
-        article.summary != undefined && typeof  article.summary == "string" && article.summary.length > 0 &&
-        article.summary.length <= 200 &&
-        article.createdAt != undefined && typeof  article.createdAt == "object" &&
-        article.author != undefined && typeof  article.author == "string" && article.author.length > 0 &&
-        article.content != undefined && typeof  article.content == "string" && article.content.length > 0 &&
-        article.tags != undefined && typeof article.tags == "object" &&
-        article.tags.length >= 1 && article.tags.length <= 5) {
+    if ((typeof article.id == "number") || (typeof article.id == "string") &&
+        typeof article.createdAt == "object" &&
+        typeof article.tags == "object" && article.tags.length >= 1 && article.tags.length <= 5 &&
+        typeof article.author == "string" && article.author.length > 0 &&
+        typeof article.content == "string" && article.content.length > 0 &&
+        typeof article.title == "string" && article.title.length > 0 && article.title.length <= 100) {
         return true;
     }
     return false;
@@ -306,14 +310,15 @@ function editArticle(id, article) {
         article.title.length <= 100) {
         articles[index].title = article.title;
     }
-    if (article.summary != undefined && typeof  article.title == "string" && article.summary.length > 0 &&
+    if (article.summary != undefined && typeof article.summary == "string" && article.summary.length > 0 &&
         article.summary.length <= 200) {
         articles[index].summary = article.summary;
+
     }
     if (article.content != undefined && typeof  article.content == "string" && article.content.length > 0) {
         articles[index].content = article.content;
     }
-    if (article.tags.length >= 1 && article.tags.length <= 5) {
+    if (article.tags != undefined && article.tags.length >= 1 && article.tags.length <= 5) {
         articles[index].tags = article.tags;
     }
     return true;
@@ -381,4 +386,67 @@ function deleteTagInArticle(id, tag) {
     }
 }
 
-validateArticle(articles[0]);
+
+console.log('проверка метода getArticles');
+
+console.log('getArticles()');
+console.log(getArticles());
+
+console.log('getArticles(2,5)');
+console.log(getArticles(2, 5));
+
+console.log('getArticles(0,5,{author: \'Адериха М. А.\'})');
+console.log(getArticles(0, 5, {author: 'Адериха М. А.'}));
+
+console.log('getArticles(0, 10, {createdAt: new Date(2017, 1, 28)})');
+console.log(getArticles(0, 10, {createdAt: new Date(2017, 1, 28)}));
+
+console.log('getArticles(0, 10, {tags: \'#ГАИ\'})');
+console.log(getArticles(0, 10, {tags: '#ГАИ'}));
+
+console.log('getArticles(0, 10, {tags: \'#RECORD\', author: \'Адериха М. А.\', createdAt: new Date(2017, 1, 28)})');
+console.log(getArticles(0, 10, {tags: '#RECORD', author: 'Адериха М. А.', createdAt: new Date(2017, 1, 28)}));
+
+console.log('\nпроверка метода getArticle');
+
+console.log('getArticles()');
+console.log(getArticle());
+
+console.log('getArticles(5)');
+console.log(getArticle(5));
+
+console.log('getArticles(199)');
+console.log(getArticle(199));
+
+console.log('\nпроверка метода validateArticle');
+
+console.log('validateArticle(articles[0])');
+console.log(validateArticle(articles[0]));
+
+console.log('validateArticle({id: new Date(2017, 2, 1)})');
+console.log(validateArticle({id: new Date(2017, 2, 1)}));
+
+
+console.log('\nпроверка метода addArticle');
+
+console.log('addArticle({id: 999, title: \'fsgfed\', summary: \'sfsdfdsfsd\', createdAt: new Date(2014, 4, 8), author:' +
+    ' \'Шуманский Н. А.\',content: \'wdfdvdvevcev\', tags: [\'#NEW\',\'#AK\']})');
+console.log(addArticle({
+    id: 999, title: 'fsgfed', summary: 'sfsdfdsfsd', createdAt: new Date(2014, 4, 8), author: 'Шуманский Н. А.',
+    content: 'wdfdvdvevcev', tags: ['#NEW', '#AK']
+}));
+
+
+console.log('\nпроверка метода addArticle');
+
+console.log(getArticle(1));
+console.log('editArticle(1, {title: \'fsgfed\', summary: \'sfsdfdsfsd\', content: \'wdfdvdvevcev\', tags: [\'#NEW\', \'#AK\']})');
+console.log(editArticle(1, {title: 'fsgfed', summary: 'sfsdfdsfsd', content: 'wdfdvdvevcev', tags: ['#NEW', '#AK']}));
+console.log(getArticle(1));
+
+console.log('\nпроверка метода removeArticle');
+
+console.log(getArticles());
+console.log('removeArticle(3)');
+console.log(removeArticle(3));
+console.log(getArticles());
