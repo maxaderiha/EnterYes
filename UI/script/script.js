@@ -1,6 +1,5 @@
 "use strict";
 
-var count = 0;
 var startID = 0;
 
 var articles = [
@@ -162,7 +161,7 @@ function getArticles(skip, top, filterConfig) {
     if (skip == undefined) {
         skip = 0;
     }
-    if (skip >= count) {
+    if (skip >= articles.length) {
         return null;
     }
     if (top == undefined) {
@@ -173,13 +172,13 @@ function getArticles(skip, top, filterConfig) {
     var index = 0;
 
     if (filterConfig == undefined) {
-        for (var i = skip; i < count && i < top + skip; i++) {
+        for (var i = skip; i < articles.length && i < top + skip; i++) {
             newArticles[index] = articles[i];
             index++;
         }
     } else {
         if (filterConfig.author != undefined && filterConfig.tags != undefined && filterConfig.createdAt != undefined) {
-            for (var i = skip; i < count && i < top + skip; i++) {
+            for (var i = skip; i < articles.length && i < top + skip; i++) {
                 if (filterConfig.author == articles[i].author && filterConfig.tags == articles[i].tags && filterConfig.createdAt == articles[i].createdAt) {
                     newArticles[index] = articles[i];
                     index++;
@@ -188,7 +187,7 @@ function getArticles(skip, top, filterConfig) {
         }
 
         if (filterConfig.author != undefined && filterConfig.tags != undefined && filterConfig.createdAt == undefined) {
-            for (var i = skip; i < count && i < top + skip; i++) {
+            for (var i = skip; i < articles.length && i < top + skip; i++) {
                 if (filterConfig.author == articles[i].author && filterConfig.tags == articles[i].tags) {
                     newArticles[index] = articles[i];
                     index++;
@@ -197,7 +196,7 @@ function getArticles(skip, top, filterConfig) {
         }
 
         if (filterConfig.author != undefined && filterConfig.tags == undefined && filterConfig.createdAt != undefined) {
-            for (var i = skip; i < count && i < top + skip; i++) {
+            for (var i = skip; i < articles.length && i < top + skip; i++) {
                 if (filterConfig.author == articles[i].author && filterConfig.createdAt == articles[i].createdAt) {
                     newArticles[index] = articles[i];
                     index++;
@@ -206,7 +205,7 @@ function getArticles(skip, top, filterConfig) {
         }
 
         if (filterConfig.author != undefined && filterConfig.tags == undefined && filterConfig.createdAt == undefined) {
-            for (var i = skip; i < count && i < top + skip; i++) {
+            for (var i = skip; i < articles.length && i < top + skip; i++) {
                 if (filterConfig.author == articles[i].author) {
                     newArticles[index] = articles[i];
                     index++;
@@ -215,7 +214,7 @@ function getArticles(skip, top, filterConfig) {
         }
 
         if (filterConfig.author == undefined && filterConfig.tags != undefined && filterConfig.createdAt != undefined) {
-            for (var i = skip; i < count && i < top + skip; i++) {
+            for (var i = skip; i < articles.length && i < top + skip; i++) {
                 if (filterConfig.tags == articles[i].tags && filterConfig.createdAt == articles[i].createdAt) {
                     newArticles[index] = articles[i];
                     index++;
@@ -224,7 +223,7 @@ function getArticles(skip, top, filterConfig) {
         }
 
         if (filterConfig.author == undefined && filterConfig.tags != undefined && filterConfig.createdAt == undefined) {
-            for (var i = skip; i < count && i < top + skip; i++) {
+            for (var i = skip; i < articles.length && i < top + skip; i++) {
                 if (filterConfig.tags == articles[i].tags) {
                     newArticles[index] = articles[i];
                     index++;
@@ -233,7 +232,7 @@ function getArticles(skip, top, filterConfig) {
         }
 
         if (filterConfig.author == undefined && filterConfig.tags == undefined && filterConfig.createdAt != undefined) {
-            for (var i = skip; i < count && i < top + skip; i++) {
+            for (var i = skip; i < articles.length && i < top + skip; i++) {
                 if (filterConfig.createdAt == articles[i].createdAt) {
                     newArticles[index] = articles[i];
                     index++;
@@ -259,10 +258,7 @@ function getArticle(id) {
 
 function isArticle(id) {
     var res = -1;
-    if (articles.id == undefined || typeof articles.id != "number") {
-        return res;
-    }
-    for (var i = 0; i < count; i++) {
+    for (var i = 0; i < articles.length; i++) {
         if (articles[i].id == id) {
             return i;
         }
@@ -288,7 +284,7 @@ function validateArticle(article) {
 
 function addArticle(article) {
     if (validateArticle(article)) {
-        articles[count++] = article;
+        articles[articles.length] = article;
         addToTagsArray(article.tags);
         return true;
     } else {
@@ -385,10 +381,4 @@ function deleteTagInArticle(id, tag) {
     }
 }
 
-
-
-
-
-
-
-
+validateArticle(articles[0]);
