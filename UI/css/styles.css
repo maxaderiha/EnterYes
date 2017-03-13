@@ -58,6 +58,14 @@ header {
 
 }
 
+.name {
+    float: right;
+    font-size: 15px;
+    margin-top: 18px;
+    margin-left: 20px;
+    margin-right: 65px;
+}
+
 .icon-in:hover {
     color: #6D7174;
 }
@@ -85,7 +93,7 @@ header {
 .container-search input#search {
     width: 0px;
     height: 35px;
-    background: #4D5254;
+    background: #5C5C5C;
     border: none;
     font-size: 12pt;
     float: right;
@@ -126,9 +134,9 @@ header {
 /*меню тегов*/
 header .tags {
     width: 100%;
-    text-align: center; /*пытаемся выровнять содержимое по центру */
-    background: #3C3F41; /* для наглядности обозначаем родителя */
-    /*float: left; !* чтоб высота родителя была с учетом плавающих потомков *!*/
+    text-align: center;
+    background: #3C3F41;
+    float: left; /* чтоб высота родителя была с учетом плавающих потомков */
 }
 
 header .tags li:hover {
@@ -172,9 +180,9 @@ ul a {
 /*фиксируем шапку*/
 .fixed {
     position: fixed;
-    right: 0px;
-    top: 0px;
-    left: 0px;
+    right: 0;
+    top: 0;
+    left: 0;
     padding: 0;
     z-index: 1;
 }
@@ -182,10 +190,14 @@ ul a {
 /*фиксируем шапку*/
 
 /*контент*/
+.feed {
+    margin-top: 65px;
+}
+
 .content {
     position: relative;
     width: 1024px;
-    padding-top: 25px;
+
     display: inline-block;
 }
 
@@ -218,11 +230,19 @@ ul a {
     text-align: left;
 }
 
-.content .author {
+.article-list-item {
+    margin-bottom: 20px;
+}
+
+.content .article-list-item-author {
     margin: 7px 0;
     font-size: 14px;
     float: left;
     width: 20%;
+}
+
+.article-list-item-img {
+    width: 1024px;
 }
 
 .tab_tags {
