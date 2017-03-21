@@ -309,8 +309,6 @@ var articleModul = (function () {
         }
     }
 
-    /*Зачем проверять функцию на валидность, если Функция в массиве заведомо валидна!
-     Т. к. проверка на валидность проводится при первом добавлении.*/
     function editArticle(id, article) {
         var index = isArticle(id);
         if (index == -1) {
@@ -448,8 +446,13 @@ var articleRenderer = (function () {
         template.content.querySelector('.article-list-item-summary').textContent = article.summary;
         template.content.querySelector('.article-list-item-author').textContent = article.author;
         template.content.querySelector('.article-list-item-date').textContent = article.createdAt.toDateString();
+        template.content.querySelector('.tags-ul').innerHTML = '';
+        for (var i = 0; i < article.tags.length; i++) {
+            var newLi = document.createElement('li');
+            newLi.innerHTML = article.tags[i];
+            template.content.querySelector('.tags-ul').appendChild(newLi);
+        }
         template.content.querySelector('.article-list-item-img').setAttribute("src", article.img);
-
         return template.content.querySelector('.article-list-item').cloneNode(true);
     }
 

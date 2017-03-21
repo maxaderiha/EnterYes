@@ -93,13 +93,13 @@ header {
 .container-search input#search {
     width: 0px;
     height: 35px;
-    background: #5C5C5C;
+    background: #E6E6E6;
     border: none;
     font-size: 12pt;
     float: right;
     padding-left: 0;
     border-radius: 5px;
-    color: #fff;
+    color: #3C3F41;
     transition: width .55s ease;
 }
 
@@ -125,9 +125,6 @@ header {
     padding-right: 30px;
 }
 
-.container-search:hover .icon {
-    color: #3C3F41;
-}
 
 /*шапка*/
 
@@ -256,15 +253,16 @@ ul a {
 }
 
 .tab_tags li:hover {
+    color: #3C3F41;
     background-color: #ffffff;
     transition: background-color .7s ease;
 
 }
 
-.tab_tags li:hover a {
-    color: #3C3F41;
-    transition: background-color .7s ease;
-}
+/*.tab_tags li:hover a {*/
+    /*color: #3C3F41;*/
+    /*transition: background-color .7s ease;*/
+/*}*/
 
 .tab_tags ul {
     margin: 0;
