@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 /*общие*/
 body {
     font: 12px Tahoma, sans-serif;
@@ -24,7 +25,7 @@ header {
     margin: auto;
 }
 
-.box-bars {
+.box-filter {
     position: absolute;
     width: 40px;
     height: 45px;
@@ -44,26 +45,29 @@ header {
 
 .box-in {
     position: absolute;
+    top: 12px;
     width: 45px;
     height: 45px;
-    right: 10px;
+    right: 0;
+    text-align: right;
 }
 
 .icon-in {
-    position: absolute;
+    position: relative;
     font-size: 25px;
     margin-top: 12px;
     color: #3C3F41;
     z-index: 1;
-
 }
 
 .name {
+    color: #3C3F41;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
     float: right;
-    font-size: 15px;
-    margin-top: 18px;
-    margin-left: 20px;
-    margin-right: 65px;
+    font-size: 16px;
+    margin: 18px 65px 20px 20px;
+    cursor: pointer;
 }
 
 .icon-in:hover {
@@ -75,56 +79,6 @@ header {
     top: 10px;
     left: 40px;
 }
-
-.box {
-    position: absolute;
-    top: 10px;
-    right: 0px;
-}
-
-.container-search {
-    width: 300px;
-    vertical-align: middle;
-    white-space: nowrap;
-    position: relative;
-    z-index: 3;
-}
-
-.container-search input#search {
-    width: 0px;
-    height: 35px;
-    background: #E6E6E6;
-    border: none;
-    font-size: 12pt;
-    float: right;
-    padding-left: 0;
-    border-radius: 5px;
-    color: #3C3F41;
-    transition: width .55s ease;
-}
-
-.container-search .icon {
-    position: absolute;
-    font-size: 20px;
-    margin-left: 277px;
-    margin-top: 5px;
-    z-index: 5;
-    color: #3C3F41;
-}
-
-.container-search input#search:focus, .container-search input#search:active {
-    outline: none;
-    width: 300px;
-    padding-left: 20px;
-    padding-right: 30px;
-}
-
-.container-search:hover input#search {
-    width: 300px;
-    padding-left: 20px;
-    padding-right: 30px;
-}
-
 
 /*шапка*/
 
@@ -164,8 +118,9 @@ nav li {
 
 ul li {
     display: inline-block;
-    padding: 10px 30px;
+    padding: 10px 15px;
     margin: 0;
+    cursor: pointer;
 }
 
 ul a {
@@ -186,21 +141,101 @@ ul a {
 
 /*фиксируем шапку*/
 
+.filter-page {
+    margin-top: 100px;
+    margin-bottom: 70px;
+    display: none;
+}
+
+/*редактирование новости*/
+.edit-page {
+    margin-top: 100px;
+    display: none;
+}
+
+/*редактирование новости*/
+
+/*добавление новости*/
+.add-page {
+    margin-top: 100px;
+    display: none;
+}
+
+.form {
+    position: relative;
+    background: #ffffff;
+    max-width: 560px;
+    margin: 0 auto 30px;
+    padding: 20px 45px 45px 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3), 0 5px 5px 0 rgba(0, 0, 0, 0.34);
+}
+
+.form input, textarea {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #ededed;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+}
+
+.form .add-photo {
+    border: 0;
+    background: #FFFFFF;
+}
+
+.form p {
+    text-align: left;
+    font: 14px 'Roboto', sans-serif;
+    color: #3C3F41;
+}
+
+.form h2 {
+    font: 20px 'Oswald', sans-serif;
+    color: #3C3F41;
+}
+
+.form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #3C3F41;
+    border: 0;
+    padding: 10px;
+    color: #ebebeb;
+    font-size: 14px;
+    cursor: pointer;
+    width: 30%;
+}
+
+.form button:hover {
+    transition: background-color .4s ease;
+    background: #e1e1e1;
+    color: #3C3F41;
+}
+
+/*добавление новости*/
+
 /*контент*/
 .feed {
-    margin-top: 65px;
+    margin-top: 90px;
 }
 
 .content {
     position: relative;
     width: 1024px;
-
     display: inline-block;
 }
 
 .content .text {
 
-    padding: 0 10px;
+    padding: 0;
     display: block;
     position: absolute;
     left: 0;
@@ -223,8 +258,33 @@ ul a {
 }
 
 .content p {
+    padding: 0 10px;
     font-size: 18px;
-    text-align: left;
+    text-align: justify;
+}
+
+.content .article-list-item-date {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.content .button {
+    font-size: 14px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    background: none;
+    float: left;
+    padding: 10px 15px;
+    outline: 0;
+    border: 0;
+    display: none;
+}
+
+.content .button:hover {
+    color: #3C3F41;
+    background-color: #ffffff;
+    transition: background-color .7s ease;
 }
 
 .article-list-item {
@@ -232,10 +292,10 @@ ul a {
 }
 
 .content .article-list-item-author {
-    margin: 7px 0;
-    font-size: 14px;
+    margin: 7px 0 5px 0;
+    font-size: 12px;
     float: left;
-    width: 20%;
+    width: 10%;
 }
 
 .article-list-item-img {
@@ -246,9 +306,8 @@ ul a {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 15px;
+    font-size: 14px;
     text-align: right;
-    /*float: right;*/
     width: 80%;
 }
 
@@ -256,16 +315,11 @@ ul a {
     color: #3C3F41;
     background-color: #ffffff;
     transition: background-color .7s ease;
-
 }
-
-/*.tab_tags li:hover a {*/
-    /*color: #3C3F41;*/
-    /*transition: background-color .7s ease;*/
-/*}*/
 
 .tab_tags ul {
     margin: 0;
+    padding: 0;
 }
 
 /*контент*/
@@ -274,7 +328,8 @@ ul a {
 .trans {
     width: 100%;
     padding-bottom: 30px;
-    padding-top: 30px;
+    padding-top: 8px;
+    cursor: pointer;
 }
 
 .trans a {
@@ -294,12 +349,16 @@ ul a {
 /*футер*/
 footer {
     background: #3C3F41;
+    position: absolute;
+    width: 100%;
+    height: 165px;
+
 }
 
 .footer {
     position: relative;
     max-width: 1024px;
-    height: 200px;
+    height: 165px;
     margin: auto;
     color: #ffffff;
 }
@@ -329,3 +388,92 @@ footer {
 }
 
 /*футер*/
+
+/*авторизация*/
+.background-login-page {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.login-page {
+    width: 360px;
+    padding: 10% 0 0;
+    margin: auto;
+}
+
+.form-login-page {
+    position: relative;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+}
+
+.form-login-page .input-login-page {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #ebebeb;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form-login-page .button-login-page {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #3C3F41;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    /*transition: all 0.3 ease;*/
+    cursor: pointer;
+}
+
+.form-login-page button:hover {
+    transition: background-color .3s ease;
+    background: #737373;
+}
+
+.form-login-page .message, .form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+    text-align: center;
+}
+
+.form-login-page a, .form a {
+    color: #3C3F41;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-login-page .incorrect-input, .form .error-edit, .form .error-add {
+    margin: 11px 0 0;
+    color: #c76f58;
+    font-size: 11px;
+    text-align: center;
+}
+
+/*авторизация*/
+
+.add-news-button {
+    position: absolute;
+    top: 12px;
+    width: 45px;
+    height: 45px;
+    right: 35px;
+    text-align: right;
+    display: none;
+}
