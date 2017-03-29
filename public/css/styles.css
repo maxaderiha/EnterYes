@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 /*общие*/
 body {
+    height: 100%;
     font: 12px Tahoma, sans-serif;
     background-color: #ffffff;
     margin: 0;
@@ -20,7 +21,7 @@ header {
 .header {
     background-color: #ffffff;
     position: relative;
-    max-width: 1024px;
+    max-width: 81.2%;
     height: 57px;
     margin: auto;
 }
@@ -131,6 +132,7 @@ ul a {
 
 /*фиксируем шапку*/
 .fixed {
+    background: #ffffff;
     position: fixed;
     right: 0;
     top: 0;
@@ -142,14 +144,14 @@ ul a {
 /*фиксируем шапку*/
 
 .filter-page {
-    margin-top: 100px;
+    margin-top: 110px;
     margin-bottom: 70px;
     display: none;
 }
 
 /*редактирование новости*/
 .edit-page {
-    margin-top: 100px;
+    margin-top: 110px;
     display: none;
 }
 
@@ -157,7 +159,7 @@ ul a {
 
 /*добавление новости*/
 .add-page {
-    margin-top: 100px;
+    margin-top: 110px;
     display: none;
 }
 
@@ -224,12 +226,13 @@ ul a {
 
 /*контент*/
 .feed {
-    margin-top: 90px;
+    margin-top: 6.9%;
+
 }
 
 .content {
     position: relative;
-    width: 1024px;
+    width: 90%;
     display: inline-block;
 }
 
@@ -238,9 +241,9 @@ ul a {
     padding: 0;
     display: block;
     position: absolute;
-    left: 0;
+    left: 5%;
     bottom: 2px;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -299,7 +302,7 @@ ul a {
 }
 
 .article-list-item-img {
-    width: 1024px;
+    width: 90%;
 }
 
 .tab_tags {
@@ -330,6 +333,7 @@ ul a {
     padding-bottom: 30px;
     padding-top: 8px;
     cursor: pointer;
+    display: none;
 }
 
 .trans a {
@@ -346,18 +350,32 @@ ul a {
 
 /*показать ещё*/
 
+/*для фиксации футера*/
+html,
+.wrapper {
+    height: 100%;
+}
+
+.cont {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 167px;
+}
+
+/*для фиксации футера*/
+
 /*футер*/
 footer {
     background: #3C3F41;
     position: absolute;
     width: 100%;
     height: 165px;
-
+    margin-top: -165px;
 }
 
 .footer {
     position: relative;
-    max-width: 1024px;
+    max-width: 81.25%;
     height: 165px;
     margin: auto;
     color: #ffffff;
@@ -459,7 +477,7 @@ footer {
     cursor: pointer;
 }
 
-.form-login-page .incorrect-input, .form .error-edit, .form .error-add {
+.form-login-page .incorrect-input, .form .error-edit, .form .error-add, .form .error-filter {
     margin: 11px 0 0;
     color: #c76f58;
     font-size: 11px;
@@ -476,4 +494,8 @@ footer {
     right: 35px;
     text-align: right;
     display: none;
+}
+
+h2{
+    font-size: 1.65em;
 }

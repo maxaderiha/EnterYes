@@ -1,11 +1,11 @@
 "use strict";
 
-function mainPage(filterConfig) {
-    filter = filterConfig || null;
+function mainPage() {
     document.getElementById("feed").style.display = "block";
     document.getElementById("login-page").style.display = "none";
     document.getElementById("edit-page").style.display = "none";
     document.getElementById("add-page").style.display = "none";
+    document.getElementById("filter-id").style.display = "none";
     //window.scrollTo(0, 0);
     // document.getElementById("navigation-row").style.display = "block";
     // document.getElementById("main-page").style.display = "block";
@@ -24,7 +24,6 @@ function authorizationPage() {
         return;
     }
     document.getElementById("login-page").style.display = "block";
-
     document.querySelector(".incorrect-input").style.visibility = "hidden";
 }
 
@@ -60,7 +59,18 @@ function addPage() {
     setScroll(0);
     document.getElementById("feed").style.display = "none";
     document.getElementById("edit-page").style.display = "none";
+    document.getElementById("filter-id").style.display = "none";
     document.querySelector(".error-add").style.visibility = "hidden";
     document.getElementById("add-page").style.display = "block";
+    window.scrollTo(0, 0);
+}
+
+function filterPage() {
+    setScroll(0);
+    document.getElementById("feed").style.display = "none";
+    document.getElementById("edit-page").style.display = "none";
+    document.getElementById("add-page").style.display = "none";
+    document.querySelector(".error-filter").style.visibility = "hidden";
+    document.getElementById("filter-id").style.display = "block";
     window.scrollTo(0, 0);
 }

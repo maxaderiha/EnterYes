@@ -13,6 +13,7 @@
     <script src="script/edit.js"></script>
     <script src="script/add.js"></script>
     <script src="script/additional.js"></script>
+    <script src="script/filter.js"></script>
     <title>EnterYes</title>
 </head>
 <body>
@@ -24,15 +25,15 @@
                 <a><img src="images/logo-black.png" alt="EnterYes" height="39" width="201"></a>
             </div>
             <div class="box-filter">
-                <span class="icon-bars"><i class="fa fa-filter"></i></span>
+                <span class="icon-bars"><i class="fa fa-filter" onclick="filterPage();"></i></span>
             </div>
             <div class="box-in">
                 <span class="icon-in"><i class="fa fa-sign-in" id="log-in" aria-hidden="true"
-                                         onclick="authorizationPage()"></i></span>
+                                         onclick="authorizationPage();"></i></span>
             </div>
             <div class="add-news-button">
                 <span class="icon-in"><i class="fa fa-plus" id="add-new" aria-hidden="true"
-                                         onclick="addPage()"></i></span>
+                                         onclick="addPage();"></i></span>
             </div>
             <p class=" name"></p>
         </div>
@@ -55,131 +56,139 @@
     </div>
 </header>
 
-<div class="feed" id="feed" align="center">
-</div>
+<div class="wrapper">
 
-<template id="template-article-list-item">
-    <div class="article-list-item" data-id="id">
-        <div class="content">
-            <a><img class="article-list-item-img"></a>
-            <div class="text">
-                <a><h1 class="article-list-item-title">Tesla установила рекорд по дальности
-                    пробега электрокара.</h1></a>
-                <p class="article-list-item-summary"> Увеличить дальность пробега производитель смог за счет новых
-                    100-киловаттовых батарей.
-                    Компания Tesla начала оснащать свои электрокары - седан Model S и вседорожник Model X
-                    - 100-киловаттными батареями. Их мощь в сочетании с относительно невысоким потреблением
-                    энергии дают автомобилям самый большой запас хода...
-                </p>
-                <p class="article-list-item-author"></p><br>
-                <p class="article-list-item-date"></p><br>
-                <button type="button" class="button"
-                        onclick="deletePost(this.parentNode.parentNode.parentNode.dataset.id);">удалить
-                </button>
-                <button type="button" class="button"
-                        onclick="editPage(this.parentNode.parentNode.parentNode.dataset.id);">редактировать
-                </button>
-                <div class="tab_tags">
-                    <ul class="tags-ul">
-                    </ul>
+    <div class="cont">
+        <div class="feed" id="feed" align="center">
+        </div>
+
+        <template id="template-article-list-item">
+            <div class="article-list-item" data-id="id">
+                <div class="content">
+                    <a><img class="article-list-item-img"></a>
+                    <div class="text">
+                        <a><h2 class="article-list-item-title">Tesla установила рекорд по дальности
+                            пробега электрокара.</h2></a>
+                        <p class="article-list-item-summary"> Увеличить дальность пробега производитель смог за счет новых
+                            100-киловаттовых батарей.
+                            Компания Tesla начала оснащать свои электрокары - седан Model S и вседорожник Model X
+                            - 100-киловаттными батареями. Их мощь в сочетании с относительно невысоким потреблением
+                            энергии дают автомобилям самый большой запас хода...
+                        </p>
+                        <p class="article-list-item-author"></p><br>
+                        <p class="article-list-item-date"></p><br>
+                        <button type="button" class="button"
+                                onclick="deletePost(this.parentNode.parentNode.parentNode.dataset.id);">удалить
+                        </button>
+                        <button type="button" class="button"
+                                onclick="editPage(this.parentNode.parentNode.parentNode.dataset.id);">редактировать
+                        </button>
+                        <div class="tab_tags">
+                            <ul class="tags-ul">
+                            </ul>
+                        </div>
+                        <div style="clear: left"></div>
+                    </div>
                 </div>
-                <div style="clear: left"></div>
+            </div>
+        </template>
+
+        <div class="trans" onclick="showMore();" align="center">
+            <a>ПОКАЗАТЬ ЕЩЁ</a>
+        </div>
+
+        <div class="add-page" id="add-page">
+            <div class="form">
+
+                <h2 align="center">Добавление новости</h2>
+                <form class="add-form">
+                    <p>Заголовок:<br>
+                        <input type="text" id="title-add"/></p>
+                    <p>Описание:<br>
+                        <textarea name="comment" id="content-add" cols="50" rows="15"></textarea></p>
+                    <p>Теги:<br>
+                        <input type="text" id="tags-add"/></p>
+                    <p>Фото:<br>
+                        <input class="add-photo" type="file" name="image"></p>
+                    <button type="button" onclick="addPost()">добавить</button>
+                    <p class="message"><a onclick="mainPage()">На главную</a></p>
+                    <p class="error-add">неверные данные</p>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="edit-page" id="edit-page">
+            <div class="form">
+                <h2 align="center">Редактирование новости</h2>
+                <form class="add-form">
+                    <p>Заголовок:<br>
+                        <input type="text" id="title"/></p>
+                    <p>Описание:<br>
+                        <textarea name="comment" id="content" cols="50" rows="15"></textarea></p>
+                    <p>Теги:<br>
+                        <input type="text" id="tags"/></p>
+                    <p>Фото:<br>
+                        <input class="add-photo" type="file" name="image"></p>
+                    <button type="button" onclick="editPost();">изменить
+                    </button>
+                    <p class="message"><a onclick="mainPage()">На главную</a></p>
+                    <p class="error-edit">неверные данные</p>
+                </form>
+            </div>
+        </div>
+
+        <div class="filter-page" id="filter-id">
+            <div class="form">
+                <h2 align="center">Фильтр</h2>
+                <form class="filter-form">
+                    <p>Автор:<br>
+                        <input type="text" id="author"/></p>
+                    <p>Дата:<br>
+                        <input type="text" id="data" placeholder="ДД-ММ-ГГГГ"/></p>
+                    <p>Теги:<br>
+                        <input type="text" id="tag"/></p>
+                    <button type="button" onclick="startFilter();">применить</button>
+                    <p class="message"><a onclick="mainPageAfterFilter();">На главную</a></p>
+                    <p class="error-filter">ошибка</p>
+                </form>
+            </div>
+        </div>
+
+        <div class="background-login-page" id="login-page">
+            <div class="login-page">
+                <div class="form-login-page">
+                    <form class="login-form">
+                        <input class="input-login-page" type="text" placeholder="Логин" id="login"/>
+                        <input class="input-login-page" type="password" placeholder="Пароль" id="password"/>
+                        <button class="button-login-page" type="button" onclick="logIn();">войти</button>
+                        <p class="message"><a onclick="mainPage()">На главную</a></p>
+                        <p class="incorrect-input">неверный логин или пароль</p>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</template>
 
-<div class="trans" onclick="showMore();" align="center">
-    <a>ПОКАЗАТЬ ЕЩЁ</a>
-</div>
-
-<div class="add-page" id="add-page">
-    <div class="form">
-
-        <h2 align="center">Добавление новости</h2>
-        <form class="add-form">
-            <p>Заголовок:<br>
-                <input type="text" id="title-add"/></p>
-            <p>Описание:<br>
-                <textarea name="comment" id="content-add" cols="50" rows="15"></textarea></p>
-            <p>Теги:<br>
-                <input type="text" id="tags-add"/></p>
-            <p>Фото:<br>
-                <input class="add-photo" type="file" name="image"></p>
-            <button type="button" onclick="addPost()">добавить</button>
-            <p class="message"><a onclick="mainPage()">На главную</a></p>
-            <p class="error-add">неверные данные</p>
-        </form>
-
-    </div>
-</div>
-
-<div class="edit-page" id="edit-page">
-    <div class="form">
-        <h2 align="center">Редактирование новости</h2>
-        <form class="add-form">
-            <p>Заголовок:<br>
-                <input type="text" id="title"/></p>
-            <p>Описание:<br>
-                <textarea name="comment" id="content" cols="50" rows="15"></textarea></p>
-            <p>Теги:<br>
-                <input type="text" id="tags"/></p>
-            <p>Фото:<br>
-                <input class="add-photo" type="file" name="image"></p>
-            <button type="button" onclick="editPost();">изменить
-            </button>
-            <p class="message"><a onclick="mainPage()">На главную</a></p>
-            <p class="error-edit">неверные данные</p>
-        </form>
-    </div>
-</div>
-
-<div class="filter-page">
-    <div class="form">
-        <h2 align="center">Фильтр</h2>
-        <form class="filter-form">
-            <p>Автор:<br>
-                <input type="text"/></p>
-            <p>Дата:<br>
-                <input type="text"/></p>
-            <p>Теги:<br>
-                <input type="text"/></p>
-            <button>выполнить</button>
-        </form>
-    </div>
-</div>
-
-<div class="background-login-page" id="login-page">
-    <div class="login-page">
-        <div class="form-login-page">
-            <form class="login-form">
-                <input class="input-login-page" type="text" placeholder="Логин" id="login"/>
-                <input class="input-login-page" type="password" placeholder="Пароль" id="password"/>
-                <button class="button-login-page" type="button" onclick="logIn();">войти</button>
-                <p class="message"><a onclick="mainPage()">На главную</a></p>
-                <p class="incorrect-input">неверный логин или пароль</p>
-            </form>
+    <footer>
+        <div class="footer">
+            <div class="logo-white">
+                <a><img src="images/logo-white.png" alt="EnterYes" height="58" width="301"></a>
+                <p>Максим Адериха<br>
+                    2 курс, 8 группа
+                </p>
+            </div>
+            <div class="contacts">
+                <p>Новостной портал<br>
+                    maxaderiha@gmail.com
+                </p>
+                <p class="data">28/02/2017</p>
+            </div>
+            <div class="clear"></div>
         </div>
-    </div>
-</div>
+    </footer>
 
-<footer>
-    <div class="footer">
-        <div class="logo-white">
-            <a><img src="images/logo-white.png" alt="EnterYes" height="58" width="301"></a>
-            <p>Максим Адериха<br>
-                2 курс, 8 группа
-            </p>
-        </div>
-        <div class="contacts">
-            <p>Новостной портал<br>
-                maxaderiha@gmail.com
-            </p>
-            <p class="data">28/02/2017</p>
-        </div>
-        <div class="clear"></div>
-    </div>
-</footer>
+</div>
 
 </body>
 
