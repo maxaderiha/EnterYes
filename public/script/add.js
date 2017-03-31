@@ -1,12 +1,13 @@
 "use strict";
 var addModel = (function () {
     function getNewArticle() {
+        var curData = new Date();
         return {
             id: (String)(++articleModel.getStartID),
             title: document.getElementById("title-add").value,
             content: document.getElementById("content-add").value,
             summary: getSummary(document.getElementById("content-add")),
-            createdAt: new Date(),
+            createdAt: new Date(curData.getFullYear(), curData.getMonth(), curData.getDate()),
             author: username,
             tags: document.getElementById("tags-add").value.split(/[\s.,]+/),
             img: 'http://cnnwire.images.worldnow.com/images/10897858_G.jpg'

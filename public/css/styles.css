@@ -483,7 +483,6 @@ footer {
     font-size: 11px;
     text-align: center;
 }
-
 /*авторизация*/
 
 .add-news-button {
@@ -498,4 +497,10 @@ footer {
 
 h2{
     font-size: 1.65em;
+}
+
+@media all and (max-width: 800px){
+    .article-list-item-summary{
+        display: none;
+    }
 }
