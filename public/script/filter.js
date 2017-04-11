@@ -35,10 +35,8 @@ function isValidDate(val) {
     var val_r = val.split(/-/);
     val_r[1] -= 1;
     var curDate = new Date(val_r[2], val_r[1], val_r[0]);
-    if (curDate.getFullYear() == val_r[2] && curDate.getMonth() == val_r[1] && curDate.getDate() == val_r[0]) {
-        return curDate;
-    }
-    return false;
+    if (!(curDate.getFullYear() == val_r[2] && curDate.getMonth() == val_r[1] && curDate.getDate() == val_r[0])) return false;
+    return curDate;
 }
 
 function startFilter() {

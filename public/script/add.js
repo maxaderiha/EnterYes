@@ -27,8 +27,7 @@ var addModel = (function () {
 function addPost() {
     var art = addModel.getNewArticle();
     if (addModel.checkForAdd(art)) {
-        articleModel.addArticle(art);
-        articleModel.storageArticles();
+        requestModel.addArticles(art);
         reloadNews();
         mainPage();
     } else {

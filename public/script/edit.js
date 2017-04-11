@@ -3,6 +3,7 @@ var editModel = (function () {
     function getNewArticle() {
         return {
             title: document.getElementById("title").value,
+            id: idEditPage,
             content: document.getElementById("content").value,
             summary: getSummary(content),
             tags: document.getElementById("tags").value.split(/[\s.,]+/)
@@ -24,10 +25,9 @@ var editModel = (function () {
 }());
 
 function editPost() {
-    var art = editModel.getNewArticle();
+    let art = editModel.getNewArticle();
     if (editModel.checkForEdit(art)) {
-        articleModel.editArticle(idEditPage, art);
-        articleModel.storageArticles();
+        requestModel.editArticles(art);
         reloadNews();
         mainPage();
     } else {

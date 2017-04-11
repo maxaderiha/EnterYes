@@ -13,8 +13,11 @@ var userModel = (function () {
     function checkForLogIn(name, password) {
         if (name && password && typeof name === "string" && typeof password === "string") {
             for (var i = 0; i < users.length; i++) {
-                if (users[i].username === name && users[i].password === password)
+                if (users[i].username === name && users[i].password === password) {
+                    localStorage.setItem("username", users[i].username);
                     return true;
+                }
+
             }
             return false;
         }
@@ -32,7 +35,6 @@ function logIn() {
     var name = document.getElementById("login").value;
     var password = document.getElementById("password").value;
     if (userModel.checkForLogIn(name, password)) {
-        username = name;
         setScroll();
         reloadNews();
         mainPage();
@@ -42,6 +44,7 @@ function logIn() {
 }
 
 function addUserUI() {
+    username = localStorage.getItem("username");
     if (username) {
         document.getElementById("log-in").className = "fa fa-sign-out";
         document.querySelector(".name").innerHTML = username;

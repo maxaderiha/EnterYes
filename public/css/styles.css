@@ -144,14 +144,14 @@ ul a {
 /*фиксируем шапку*/
 
 .filter-page {
-    margin-top: 110px;
+    margin-top: 135px;
     margin-bottom: 70px;
     display: none;
 }
 
 /*редактирование новости*/
 .edit-page {
-    margin-top: 110px;
+    margin-top: 135px;
     display: none;
 }
 
@@ -159,7 +159,7 @@ ul a {
 
 /*добавление новости*/
 .add-page {
-    margin-top: 110px;
+    margin-top: 135px;
     display: none;
 }
 

@@ -20,7 +20,9 @@ function authorizationPage() {
     setScroll();
     if (username !== null) {
         username = null;
+        localStorage.clear("username");
         addUserUI();
+        mainPage();
         return;
     }
     document.getElementById("login-page").style.display = "block";
