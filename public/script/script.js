@@ -34,10 +34,10 @@ var articleModel = (function () {
             return articles.slice(skip, top + skip);
 
             //for (var i = skip; i < articles.length && i < top + skip; i++) {
-              // newArticles[index] = articles[i];
-                //index++;
+            // newArticles[index] = articles[i];
+            //index++;
             //}
-        }       else {
+        } else {
             if (filterConfig.author && filterConfig.tags && filterConfig.createdAt) {
                 for (var i = skip; i < articles.length && i < top + skip; i++) {
                     if (filterConfig.author === articles[i].author && findTag(filterConfig.tags, articles[i].tags)
@@ -107,7 +107,7 @@ var articleModel = (function () {
     }
 
     function findTag(tags, articleTags) {
-       return tags.some(tag => articleTags.indexOf(tag) !== -1);
+        return tags.some(tag => articleTags.indexOf(tag) !== -1);
     }
 
     function getArticle(id) {
@@ -170,14 +170,14 @@ var articleModel = (function () {
         return true;
 
 
-       /* var index = isArticle(id);
-        if (index === -1) {
-            return false;
-        } else {
-            articles.splice(index, 1);
-            return true;
-        }
-        */
+        /* var index = isArticle(id);
+         if (index === -1) {
+         return false;
+         } else {
+         articles.splice(index, 1);
+         return true;
+         }
+         */
     }
 
     function isContainTag(tag) {
@@ -209,7 +209,7 @@ var articleModel = (function () {
 
         //articles = JSON.parse(requestModel.getArticles());
         //for (var i = 0; i < articles.length; i++) {
-          //  articles[i].createdAt = new Date(articles[i].createdAt);
+        //  articles[i].createdAt = new Date(articles[i].createdAt);
         //}
         count = articles.length;
     }
@@ -293,10 +293,10 @@ function startApp() {
     articleRenderer.init();
 
     /*let promise = articleModel.getArticles(0, 10);
-    promise.then(articles => {
-        renderArticles(articles);
-    });
-    */
+     promise.then(articles => {
+     renderArticles(articles);
+     });
+     */
 
     renderArticles(0, amountLoadedArticles, filter);
     addUserUI();

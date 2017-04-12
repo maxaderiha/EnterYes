@@ -145,7 +145,6 @@ ul a {
 
 .filter-page {
     margin-top: 135px;
-    margin-bottom: 70px;
     display: none;
 }
 
@@ -227,7 +226,6 @@ ul a {
 /*контент*/
 .feed {
     margin-top: 6.9%;
-
 }
 
 .content {
@@ -267,13 +265,14 @@ ul a {
 }
 
 .content .article-list-item-date {
-    margin-top: 14px;
-    margin-bottom: 0;
     font-size: 12px;
+    float: left;
+    width: 15%;
+    margin: 0 0 5px 0;
 }
 
 .content .button {
-    font-size: 14px;
+    /*font-size: 14px;*/
     color: #FFFFFF;
     text-transform: uppercase;
     background: none;
@@ -295,7 +294,7 @@ ul a {
 }
 
 .content .article-list-item-author {
-    margin: 7px 0 5px 0;
+    margin: 10px 0 0 0;
     font-size: 12px;
     float: left;
     width: 10%;
@@ -311,7 +310,7 @@ ul a {
     right: 0;
     font-size: 14px;
     text-align: right;
-    width: 80%;
+    /*width: 80%;*/
 }
 
 .tab_tags li:hover {
@@ -483,6 +482,7 @@ footer {
     font-size: 11px;
     text-align: center;
 }
+
 /*авторизация*/
 
 .add-news-button {
@@ -495,12 +495,34 @@ footer {
     display: none;
 }
 
-h2{
+h2 {
     font-size: 1.65em;
 }
 
-@media all and (max-width: 800px){
-    .article-list-item-summary{
+@media all and (max-width: 750px) {
+    .article-list-item-summary {
         display: none;
     }
+
+    .tab_tags, .content .article-list-item-author, .content .article-list-item-date {
+        font-size: 8px;
+    }
+
+    .content .article-list-item-author, .content .article-list-item-date {
+        width: 25%;
+    }
+
+    ul li, .content .button {
+        padding: 5px 10px;
+        font-size: 8px;
+    }
+
+    h2 {
+        font-size: 1em;
+    }
+
+    .feed {
+        margin-top: 10.5%;
+    }
 }
+
