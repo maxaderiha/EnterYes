@@ -10,3 +10,12 @@ function getSummary(param) {
         return param.slice(0, 197) + "...";
     }
 }
+
+window.onscroll = function () {
+    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrolled >= 57) {
+        document.querySelector(".header").style.display = "none";
+    } else {
+        document.querySelector(".header").style.display = "block";
+    }
+};

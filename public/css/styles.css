@@ -30,6 +30,7 @@ header {
     position: absolute;
     width: 40px;
     height: 45px;
+    cursor: pointer;
 }
 
 .icon-bars {
@@ -51,6 +52,7 @@ header {
     height: 45px;
     right: 0;
     text-align: right;
+    cursor: pointer;
 }
 
 .icon-in {
@@ -68,7 +70,7 @@ header {
     float: right;
     font-size: 16px;
     margin: 18px 65px 20px 20px;
-    cursor: pointer;
+    cursor: default;
 }
 
 .icon-in:hover {
@@ -144,13 +146,13 @@ ul a {
 /*фиксируем шапку*/
 
 .filter-page {
-    margin-top: 135px;
+    margin-top: 123px;
     display: none;
 }
 
 /*редактирование новости*/
 .edit-page {
-    margin-top: 135px;
+    margin-top: 123px;
     display: none;
 }
 
@@ -158,7 +160,7 @@ ul a {
 
 /*добавление новости*/
 .add-page {
-    margin-top: 135px;
+    margin-top: 123px;
     display: none;
 }
 
@@ -223,6 +225,98 @@ ul a {
 
 /*добавление новости*/
 
+/*детальный просмотр новости*/
+.detail-view {
+    margin-top: 105px;
+    position: relative;
+    width: 70%;
+    left: 15%;
+    display: none;
+}
+
+.detail-view h1 {
+    text-align: left;
+    text-align: justify;
+}
+
+.author-dw {
+    display: inline-block;
+    padding-right: 10px;
+    color: #6D7174;
+    margin: 0 0 10px 0;
+}
+
+time {
+    color: #6D7174;
+}
+
+hr {
+    background-color: #d9e1e3;
+    border: none;
+    height: 1px;
+    margin: 0 0 20px;
+}
+
+.detail-view .article-list-item-img {
+    width: 100%;
+}
+
+.content-dw {
+    font-size: 1.8em;
+    font-family: "PT Sans regular", Helvetica, Roboto, Arial, sans-serif;
+    line-height: 1.25;
+    text-align: justify;
+}
+
+.tag_list {
+    margin-bottom: 10px;
+}
+
+.tag_list a {
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    vertical-align: top;
+    padding: 5px 10px;
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    /*color: #272c2f;*/
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.tag_list a:hover, .remove:hover, .edit:hover {
+    color: #6D7174;
+    border-color: #3C3F41;
+}
+
+.remove {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+}
+
+.edit {
+    position: absolute;
+    right: 94px;
+    bottom: 10px;
+}
+
+.edit, .remove {
+    text-transform: uppercase;
+    background: none;
+    outline: 0;
+    border: 1px solid #e5e5e5;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+.buttons-dw {
+    display: none;
+    cursor: pointer;
+}
+
+/*детальный просмотр новости*/
+
 /*контент*/
 .feed {
     margin-top: 6.9%;
@@ -281,6 +375,7 @@ ul a {
     outline: 0;
     border: 0;
     display: none;
+    cursor: pointer;
 }
 
 .content .button:hover {
@@ -324,14 +419,18 @@ ul a {
     padding: 0;
 }
 
+.href {
+    cursor: pointer;
+}
+
 /*контент*/
 
 /*показать ещё*/
 .trans {
-    width: 100%;
     padding-bottom: 30px;
     padding-top: 8px;
     cursor: pointer;
+    text-align: center;
     display: none;
 }
 
@@ -493,13 +592,14 @@ footer {
     right: 35px;
     text-align: right;
     display: none;
+    cursor: pointer;
 }
 
 h2 {
     font-size: 1.65em;
 }
 
-@media all and (max-width: 750px) {
+@media all and (max-width: 900px) {
     .article-list-item-summary {
         display: none;
     }

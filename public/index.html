@@ -23,7 +23,7 @@
     <div class="fixed">
         <div class="header">
             <div class="logo-black">
-                <a><img src="images/logo-black.png" alt="EnterYes" height="39" width="201"></a>
+                <a><img src="images/logo-black.png" alt="EnterYes" height="39" width="201" onclick="mainPage();"></a>
             </div>
             <div class="box-filter">
                 <span class="icon-bars"><i class="fa fa-filter" onclick="filterPage();"></i></span>
@@ -67,9 +67,10 @@
             <div class="article-list-item" data-id="id">
                 <div class="content">
                     <a><img class="article-list-item-img"></a>
-                    <div class="text">
-                        <a><h2 class="article-list-item-title">Tesla установила рекорд по дальности
-                            пробега электрокара.</h2></a>
+                    <div class="text"><a class="href"
+                                         onclick="detailViewPage(this.parentNode.parentNode.parentNode.dataset.id);"><h2
+                            class="article-list-item-title">Tesla установила рекорд по дальности
+                        пробега электрокара.</h2></a>
                         <p class="article-list-item-summary"> Увеличить дальность пробега производитель смог за счет
                             новых
                             100-киловаттовых батарей.
@@ -83,7 +84,8 @@
                                 onclick="deletePost(this.parentNode.parentNode.parentNode.dataset.id);">удалить
                         </button>
                         <button type="button" class="button"
-                                onclick="editPage(this.parentNode.parentNode.parentNode.dataset.id);">редактировать
+                                onclick="editModel.editPage(this.parentNode.parentNode.parentNode.dataset.id);">
+                            редактировать
                         </button>
                         <div class="tab_tags">
                             <ul class="tags-ul">
@@ -95,13 +97,8 @@
             </div>
         </template>
 
-        <div class="trans" onclick="showMore();" align="center">
-            <a>ПОКАЗАТЬ ЕЩЁ</a>
-        </div>
-
         <div class="add-page" id="add-page">
             <div class="form">
-
                 <h2 align="center">Добавление новости</h2>
                 <form class="add-form">
                     <p>Заголовок:<br>
@@ -169,6 +166,44 @@
                     </form>
                 </div>
             </div>
+        </div>
+
+        <div class="detail-view" id="detail-view-page">
+            <p class="title-dw">
+            <h1 id="title-dw"></h1>
+            </p>
+            <p class="author-dw" id="author-dw"></p>
+            <time id="time-dw"></time>
+            <hr>
+            <img class="article-list-item-img" id="img-dw">
+            <p class="content-dw" id="content-dw">Далеко-далеко за словесными горами в стране гласных и согласных живут
+                рыбные тексты.
+                Вдали от всех живут они в буквенных домах на берегу Семантика большого языкового океана. Маленький руч
+                еек Даль журчит по всей стране и обеспечивает ее всеми необходимыми правилами. Эта парадигматическая
+                страна, в которой жаренные члены предложения залетают прямо в рот. Даже всемогущая пунктуация не имеет
+                власти над рыбными текстами, ведущими безорфографичный образ жизни. Однажды одна маленькая строчка рыб
+                ного текста по имени Lorem ipsum решила выйти в большой мир грамматики. Великий Оксмокс предупреждал
+                ее о злых запятых, диких знаках вопроса и коварных точках с запятой, но текст не дал сбить себя с толку.
+                Он собрал семь своих заглавных букв, подпоясал инициал за пояс и пустился в дорогу. Взобравшись на
+                первую
+                вершину курсивных гор, бросил он последний взгляд назад, на силуэт своего родного города Буквоград, на
+                заголовок деревни Алфавит и на подзаголовок своего переулка Строчка. Грустный реторический вопрос
+                скатился
+                по его щеке и он продолжил свой путь. По дороге встретил текст рукопись. Она предупредила его: «В моей
+                стране все переписывается по несколько раз. Единственное, что от меня осталось, это приставка «и».
+                Возвращайся ты лучше в свою безопасную страну». Не послушавшись рукописи, наш текст продолжил свой путь.
+            </p>
+            <hr>
+            <div class="tag_list">
+            </div>
+            <div class="buttons-dw">
+                <button type="button" class="remove">удалить</button>
+                <button type="button" class="edit">изменить</button>
+            </div>
+        </div>
+
+        <div class="trans" onclick="showMore();">
+            <a>ПОКАЗАТЬ ЕЩЁ</a>
         </div>
     </div>
 

@@ -1,16 +1,17 @@
 "use strict";
-var addModel = (function () {
+let addModel = (function () {
+
     function getNewArticle() {
-        var curData = new Date();
+        let curDate = new Date();
         return {
-            id: (String)(++articleModel.getStartID),
             title: document.getElementById("title-add").value,
             content: document.getElementById("content-add").value,
             summary: getSummary(document.getElementById("content-add")),
-            createdAt: new Date(curData.getFullYear(), curData.getMonth(), curData.getDate()),
+            createdAt: curDate,
             author: username,
+            id: (String)(username + curDate),
             tags: document.getElementById("tags-add").value.split(/[\s.,]+/),
-            img: 'http://cnnwire.images.worldnow.com/images/10897858_G.jpg'
+            img: 'http://galerey-room.ru/img_2/70d46221268405a3670806307e35cdeb.jpg'//'https://droidtalks.com/wp-content/uploads/2016/02/space.jpg'
         }
     }
 
@@ -25,7 +26,8 @@ var addModel = (function () {
 }());
 
 function addPost() {
-    var art = addModel.getNewArticle();
+    let art = addModel.getNewArticle();
+
     if (addModel.checkForAdd(art)) {
         requestModel.addArticles(art);
         reloadNews();

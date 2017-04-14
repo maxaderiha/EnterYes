@@ -1,4 +1,6 @@
 "use strict";
+let scrollTop = 0;
+let scrollLeft = 0;
 
 function mainPage() {
     document.getElementById("feed").style.display = "block";
@@ -6,13 +8,7 @@ function mainPage() {
     document.getElementById("edit-page").style.display = "none";
     document.getElementById("add-page").style.display = "none";
     document.getElementById("filter-id").style.display = "none";
-    //window.scrollTo(0, 0);
-    // document.getElementById("navigation-row").style.display = "block";
-    // document.getElementById("main-page").style.display = "block";
-    // document.getElementById("authorization-page").style.display = "none";
-    // document.getElementById("add-news-page").style.display = "none";
-    // document.getElementById("view-news-page").style.display = "none";
-    // document.getElementById("edit-news-page").style.display = "none";
+    document.getElementById("detail-view-page").style.display = "none";
     window.scrollTo(scrollLeft, scrollTop);
 }
 
@@ -29,10 +25,8 @@ function authorizationPage() {
     document.querySelector(".incorrect-input").style.visibility = "hidden";
 }
 
-var idEditPage;
 
-var scrollTop = window.pageYOffset;
-var scrollLeft = window.pageXOffset;
+let options = {weekday: 'narrow', year: 'numeric', month: 'long', day: 'numeric'};
 
 function setScroll(param) {
     if (param === 0) {
@@ -44,24 +38,13 @@ function setScroll(param) {
     }
 }
 
-function editPage(id) {
-    setScroll();
-    idEditPage = id;
-    var editArticle = articleModel.getArticle(idEditPage);
-    document.getElementById("feed").style.display = "none";
-    document.getElementById("title").value = editArticle.title;
-    document.getElementById("content").value = editArticle.content;
-    document.getElementById("tags").value = editArticle.tags;
-    document.querySelector(".error-edit").style.visibility = "hidden";
-    document.getElementById("edit-page").style.display = "block";
-    window.scrollTo(0, 0);
-}
-
 function addPage() {
     setScroll(0);
     document.getElementById("feed").style.display = "none";
     document.getElementById("edit-page").style.display = "none";
     document.getElementById("filter-id").style.display = "none";
+    document.getElementById("detail-view-page").style.display = "none";
+    document.querySelector(".trans").style.display = "none";
     document.querySelector(".error-add").style.visibility = "hidden";
     document.getElementById("add-page").style.display = "block";
     window.scrollTo(0, 0);
@@ -72,7 +55,35 @@ function filterPage() {
     document.getElementById("feed").style.display = "none";
     document.getElementById("edit-page").style.display = "none";
     document.getElementById("add-page").style.display = "none";
+    document.querySelector(".trans").style.display = "none";
+    document.getElementById("detail-view-page").style.display = "none";
     document.querySelector(".error-filter").style.visibility = "hidden";
     document.getElementById("filter-id").style.display = "block";
     window.scrollTo(0, 0);
+}
+
+function detailViewPage(id) {
+    setScroll();
+    window.scrollTo(0, 0);
+    let article = articleModel.getArticle(id);
+    let artDate = article.createdAt.toLocaleDateString("ru", options);
+
+    document.getElementById("title-dw").innerHTML = article.title;
+    document.getElementById("author-dw").innerHTML = article.author;
+    document.getElementById("time-dw").innerHTML = artDate;
+    document.getElementById("img-dw").setAttribute("src", article.img);
+    document.getElementById("content-dw").innerHTML = article.content;
+    let tagList = document.querySelector(".tag_list");
+    while (tagList.firstChild) {
+        tagList.removeChild(tagList.firstChild);
+    }
+    article.tags.forEach(tag => {
+        let newTag = document.createElement('a');
+        newTag.innerHTML = tag;
+        tagList.appendChild(newTag);
+    });
+
+    document.getElementById("feed").style.display = "none";
+    document.querySelector(".trans").style.display = "none";
+    document.getElementById("detail-view-page").style.display = "block";
 }

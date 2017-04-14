@@ -1,13 +1,12 @@
 "use strict";
-
-var filter = null;
-var error = "введите данные";
+let filter = null;
+let error = "введите данные";
 
 function getFilter() {
-    var flag = false;
-    var name = document.getElementById("author").value;
-    var tags = document.getElementById("tag").value;
-    var createdAt = document.getElementById("data").value;
+    let flag = false;
+    let name = document.getElementById("author").value;
+    let tags = document.getElementById("tag").value;
+    let createdAt = document.getElementById("data").value;
     filter = {};
     if (name) {
         filter.author = name;
@@ -19,7 +18,7 @@ function getFilter() {
         flag = true;
     }
     if (createdAt) {
-        var date = isValidDate(createdAt);
+        let date = isValidDate(createdAt);
         if (date) {
             filter.createdAt = date;
             flag = true;
@@ -32,9 +31,9 @@ function getFilter() {
 }
 
 function isValidDate(val) {
-    var val_r = val.split(/-/);
+    let val_r = val.split(/-/);
     val_r[1] -= 1;
-    var curDate = new Date(val_r[2], val_r[1], val_r[0]);
+    let curDate = new Date(val_r[2], val_r[1], val_r[0]);
     if (!(curDate.getFullYear() == val_r[2] && curDate.getMonth() == val_r[1] && curDate.getDate() == val_r[0])) return false;
     return curDate;
 }
@@ -51,7 +50,7 @@ function startFilter() {
 }
 
 function mainPageAfterFilter() {
-    filter=null;
+    filter = null;
     reloadNews();
     mainPage();
 }

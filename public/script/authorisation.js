@@ -1,9 +1,8 @@
 "use strict";
+let username = null;
 
-var username = null;
-
-var userModel = (function () {
-    var users = [
+let userModel = (function () {
+    let users = [
         {
             "username": "maxim",
             "password": "1292071"
@@ -12,17 +11,18 @@ var userModel = (function () {
 
     function checkForLogIn(name, password) {
         if (name && password && typeof name === "string" && typeof password === "string") {
-            for (var i = 0; i < users.length; i++) {
-                if (users[i].username === name && users[i].password === password) {
-                    localStorage.setItem("username", users[i].username);
-                    return true;
-                }
+            if (users.some(function (element) {
+                    if (element.username === name && element.password === password) {
+                        localStorage.setItem("username", element.username);
+                        return true;
+                    }
 
+                })) {
+                return true;
             }
-            return false;
         }
         else {
-            return false
+            return false;
         }
     }
 
@@ -32,15 +32,16 @@ var userModel = (function () {
 }());
 
 function logIn() {
-    var name = document.getElementById("login").value;
-    var password = document.getElementById("password").value;
+    let name = document.getElementById("login").value;
+    let password = document.getElementById("password").value;
     if (userModel.checkForLogIn(name, password)) {
         setScroll();
         reloadNews();
         mainPage();
     }
-    else
+    else {
         document.querySelector(".incorrect-input").style.visibility = "visible";
+    }
 }
 
 function addUserUI() {
@@ -49,17 +50,20 @@ function addUserUI() {
         document.getElementById("log-in").className = "fa fa-sign-out";
         document.querySelector(".name").innerHTML = username;
         document.querySelector(".add-news-button").style.display = "block";
-        var arr = document.getElementsByClassName("button");
-        for (var i = 0; i < arr.length; i++) {
+        let arr = document.getElementsByClassName("button");
+        for (let i = 0; i < arr.length; i++) {
             arr[i].style.display = "block";
         }
+        document.querySelector(".buttons-dw").style.display = "block";
+
     } else {
         document.getElementById("log-in").className = "fa fa-sign-in";
         document.querySelector(".add-news-button").style.display = "none";
-        var arr = document.getElementsByClassName("button");
-        for (var i = 0; i < arr.length; i++) {
+        let arr = document.getElementsByClassName("button");
+        for (let i = 0; i < arr.length; i++) {
             arr[i].style.display = "none";
         }
         document.querySelector(".name").innerHTML = "";
+        document.querySelector(".buttons-dw").style.display = "none";
     }
 }
