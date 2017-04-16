@@ -1,6 +1,8 @@
 "use strict";
 function deletePost(id) {
-    requestModel.deleteArticles(id);
-    setScroll();
+    if (id) setScroll();
+    idEditPage = id || idEditPage;
+    requestModel.deleteArticles(idEditPage);
     reloadNews();
+    mainPage();
 }

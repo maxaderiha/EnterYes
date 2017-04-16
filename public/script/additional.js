@@ -11,11 +11,21 @@ function getSummary(param) {
     }
 }
 
-window.onscroll = function () {
-    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrolled >= 57) {
-        document.querySelector(".header").style.display = "none";
-    } else {
-        document.querySelector(".header").style.display = "block";
-    }
+window.onload = function () {
+    let element = document.querySelector(".header");
+    let scrollUp = document.getElementById('scrollUp');
+
+    scrollUp.onclick = function () {
+        window.scrollTo(0, 0);
+    };
+
+    window.onscroll = function () {
+        if (window.pageYOffset >= 57) {
+            element.style.display = "none";
+            scrollUp.style.display = 'block';
+        } else {
+            element.style.display = "block";
+            scrollUp.style.display = 'none';
+        }
+    };
 };

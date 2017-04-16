@@ -9,6 +9,7 @@ function mainPage() {
     document.getElementById("add-page").style.display = "none";
     document.getElementById("filter-id").style.display = "none";
     document.getElementById("detail-view-page").style.display = "none";
+    showTrans();
     window.scrollTo(scrollLeft, scrollTop);
 }
 
@@ -63,16 +64,18 @@ function filterPage() {
 }
 
 function detailViewPage(id) {
+    idEditPage = id;
     setScroll();
     window.scrollTo(0, 0);
     let article = articleModel.getArticle(id);
     let artDate = article.createdAt.toLocaleDateString("ru", options);
 
+    document.getElementById("summary-dw").innerHTML = article.summary.slice(0, article.summary.length - 3);
     document.getElementById("title-dw").innerHTML = article.title;
     document.getElementById("author-dw").innerHTML = article.author;
     document.getElementById("time-dw").innerHTML = artDate;
     document.getElementById("img-dw").setAttribute("src", article.img);
-    document.getElementById("content-dw").innerHTML = article.content;
+    document.getElementById("content-dw").innerHTML = article.content.slice(article.summary.length - 3);
     let tagList = document.querySelector(".tag_list");
     while (tagList.firstChild) {
         tagList.removeChild(tagList.firstChild);

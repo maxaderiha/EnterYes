@@ -1,11 +1,11 @@
 "use strict";
+let idEditPage;
+
 let editModel = (function () {
 
-    let idEditPage;
-
     function editPage(id) {
-        setScroll();
-        idEditPage = id;
+        if (id) setScroll();
+        idEditPage = id || idEditPage;
         let editArticle = articleModel.getArticle(idEditPage);
         document.getElementById("feed").style.display = "none";
         document.getElementById("detail-view-page").style.display = "none";

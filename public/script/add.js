@@ -11,7 +11,7 @@ let addModel = (function () {
             author: username,
             id: (String)(username + curDate),
             tags: document.getElementById("tags-add").value.split(/[\s.,]+/),
-            img: 'http://galerey-room.ru/img_2/70d46221268405a3670806307e35cdeb.jpg'//'https://droidtalks.com/wp-content/uploads/2016/02/space.jpg'
+            img: 'https://droidtalks.com/wp-content/uploads/2016/02/space.jpg'
         }
     }
 

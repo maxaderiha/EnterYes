@@ -21,7 +21,7 @@ header {
 .header {
     background-color: #ffffff;
     position: relative;
-    max-width: 81.2%;
+    width: 81.2%;
     height: 57px;
     margin: auto;
 }
@@ -227,15 +227,12 @@ ul a {
 
 /*детальный просмотр новости*/
 .detail-view {
-    margin-top: 105px;
-    position: relative;
+    margin: 147px auto 90px auto;
     width: 70%;
-    left: 15%;
     display: none;
 }
 
 .detail-view h1 {
-    text-align: left;
     text-align: justify;
 }
 
@@ -261,7 +258,7 @@ hr {
     width: 100%;
 }
 
-.content-dw {
+.content-dw, .summary-dw {
     font-size: 1.8em;
     font-family: "PT Sans regular", Helvetica, Roboto, Arial, sans-serif;
     line-height: 1.25;
@@ -269,7 +266,7 @@ hr {
 }
 
 .tag_list {
-    margin-bottom: 10px;
+    float: left;
 }
 
 .tag_list a {
@@ -289,19 +286,9 @@ hr {
     border-color: #3C3F41;
 }
 
-.remove {
-    position: absolute;
-    right: 0;
-    bottom: 10px;
-}
-
-.edit {
-    position: absolute;
-    right: 94px;
-    bottom: 10px;
-}
-
 .edit, .remove {
+    float: right;
+    margin-left: 10px;
     text-transform: uppercase;
     background: none;
     outline: 0;
@@ -319,7 +306,7 @@ hr {
 
 /*контент*/
 .feed {
-    margin-top: 6.9%;
+    margin-top: 93px;
 }
 
 .content {
@@ -361,12 +348,11 @@ hr {
 .content .article-list-item-date {
     font-size: 12px;
     float: left;
-    width: 15%;
+    width: 30%;
     margin: 0 0 5px 0;
 }
 
 .content .button {
-    /*font-size: 14px;*/
     color: #FFFFFF;
     text-transform: uppercase;
     background: none;
@@ -392,7 +378,7 @@ hr {
     margin: 10px 0 0 0;
     font-size: 12px;
     float: left;
-    width: 10%;
+    width: 20%;
 }
 
 .article-list-item-img {
@@ -405,7 +391,6 @@ hr {
     right: 0;
     font-size: 14px;
     text-align: right;
-    /*width: 80%;*/
 }
 
 .tab_tags li:hover {
@@ -599,30 +584,72 @@ h2 {
     font-size: 1.65em;
 }
 
-@media all and (max-width: 900px) {
+#scrollUp {
+    position: fixed;
+    padding: 10px;
+    opacity: 0.5;
+    background: #aaa;
+    border-radius: 5px;
+    right: 2.8%;
+    bottom: 2.8%;
+    display: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#scrollUp:hover {
+    opacity: 0.3;
+}
+
+@media all and (max-width: 700px) {
     .article-list-item-summary {
         display: none;
     }
 
-    .tab_tags, .content .article-list-item-author, .content .article-list-item-date {
-        font-size: 8px;
+    .content {
+        width: 100%;
     }
 
-    .content .article-list-item-author, .content .article-list-item-date {
-        width: 25%;
+    .content .text {
+        width: 100%;
+        left: 0;
     }
 
-    ul li, .content .button {
-        padding: 5px 10px;
-        font-size: 8px;
+    .article-list-item-img {
+        width: 100%;
+    }
+
+    .header, .detail-view {
+        width: 96%;
     }
 
     h2 {
         font-size: 1em;
     }
 
-    .feed {
-        margin-top: 10.5%;
+    .button, li, nav li {
+        font-size: 0.8em;
+    }
+
+    .content .article-list-item-date, .content .article-list-item-author {
+        font-size: 0.65em;
+    }
+
+    ul li, .content .button {
+        padding: 4px 8px;
     }
 }
 
+@media all and (max-width: 1060px) {
+    .filter-page, .edit-page, .add-page {
+        margin-top: 159px;
+    }
+
+    .detail-view {
+        margin-top: 183px;
+    }
+
+    .feed {
+        margin-top: 129px;
+    }
+}

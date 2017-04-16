@@ -5,11 +5,9 @@ let articleModel = (function () {
 
     function getArticles(skip, top, filterConfig) {
         skip = skip || 0;
-
         if (skip >= articles.length) {
             return null;
         }
-
         top = top || 10;
 
         articles.sort((a, b) => {
@@ -52,7 +50,7 @@ let articleModel = (function () {
             typeof article.createdAt === "object" &&
             typeof article.tags === "object" && article.tags.length >= 1 && article.tags.length <= 5 &&
             typeof article.author === "string" && article.author.length > 0 &&
-            typeof article.content === "string" && article.content.length > 0 &&
+            typeof article.content === "string" && article.content.length > 196 &&
             typeof article.title === "string" && article.title.length > 0 && article.title.length <= 100) {
             return true;
         }
@@ -91,20 +89,9 @@ let articleModel = (function () {
     }
 
     function removeArticle(id) {
-
         if (isArticle(id) === -1) return false;
         articles.splice(isArticle(id), 1);
         return true;
-
-
-        /* let index = isArticle(id);
-         if (index === -1) {
-         return false;
-         } else {
-         articles.splice(index, 1);
-         return true;
-         }
-         */
     }
 
     function replaceArticles() {
@@ -193,7 +180,10 @@ function startApp() {
 
     renderArticles(0, amountLoadedArticles, filter);
     addUserUI();
+    showTrans();
+}
 
+function showTrans() {
     document.querySelector(".trans").style.display = "none";
     if (amountLoadedArticles < count) {
         document.querySelector(".trans").style.display = "block";
@@ -203,6 +193,7 @@ function startApp() {
 function renderArticles(skip, top, filter) {
     articleRenderer.removeArticlesFromDom();
     let articles = articleModel.getArticles(skip, top, filter);
+    if (filter) count = articles.length;
     articleRenderer.insertArticlesInDOM(articles);
 }
 
@@ -228,5 +219,3 @@ function reloadNews() {
 }
 
 document.addEventListener('DOMContentLoaded', startApp);
-
-console.log(articleModel.getStartID);
