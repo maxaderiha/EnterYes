@@ -81,6 +81,12 @@ header {
     position: absolute;
     top: 10px;
     left: 40px;
+
+}
+
+.logo-black img {
+    width: 201px;
+    height: 39px;
 }
 
 /*шапка*/
@@ -638,9 +644,21 @@ h2 {
     ul li, .content .button {
         padding: 4px 8px;
     }
+
+    .feed {
+        margin-top: 95px;
+    }
+
+    .filter-page, .edit-page, .add-page {
+        margin-top: 125px;
+    }
+
+    .detail-view {
+        margin-top: 149px;
+    }
 }
 
-@media all and (max-width: 1060px) {
+@media all and (max-width: 1060px) and (min-width: 701px) {
     .filter-page, .edit-page, .add-page {
         margin-top: 159px;
     }

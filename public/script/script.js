@@ -95,12 +95,13 @@ let articleModel = (function () {
     }
 
     function replaceArticles() {
-        articles = JSON.parse(requestModel.getArticles(), (key, value) => {
-            if (key === 'createdAt') return new Date(value);
-            return value;
-        });
-
-        count = articles.length;
+        return new Promise(resolve => requestModel.getArticles().then(
+            array => {
+                articles = array;
+                count = articles.length;
+                resolve();
+            }
+        ));
     }
 
     return {
@@ -175,12 +176,16 @@ let amountLoadedArticles = 10;
 let count;
 
 function startApp() {
-    articleModel.replaceArticles();
-    articleRenderer.init();
+    articleModel.replaceArticles().then(
+        () => {
+            articleModel.replaceArticles();
+            articleRenderer.init();
 
-    renderArticles(0, amountLoadedArticles, filter);
-    addUserUI();
-    showTrans();
+            renderArticles(0, amountLoadedArticles, filter);
+            addUserUI();
+            showTrans();
+        }
+    );
 }
 
 function showTrans() {

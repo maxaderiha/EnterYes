@@ -46,9 +46,10 @@ let editModel = (function () {
 function editPost() {
     let art = editModel.getNewArticle();
     if (editModel.checkForEdit(art)) {
-        requestModel.editArticles(art);
-        reloadNews();
-        mainPage();
+        requestModel.editArticles(art).then(function () {
+            reloadNews();
+            mainPage();
+        });
     } else {
         document.querySelector(".error-edit").style.visibility = "visible";
     }

@@ -29,9 +29,10 @@ function addPost() {
     let art = addModel.getNewArticle();
 
     if (addModel.checkForAdd(art)) {
-        requestModel.addArticles(art);
-        reloadNews();
-        mainPage();
+        requestModel.addArticles(art).then(function () {
+            reloadNews();
+            mainPage();
+        });
     } else {
         document.querySelector(".error-add").style.visibility = "visible";
     }
