@@ -70,21 +70,29 @@ function detailViewPage(id) {
     let article = articleModel.getArticle(id);
     let artDate = article.createdAt.toLocaleDateString("ru", options);
 
-    document.getElementById("summary-dw").innerHTML = article.summary.slice(0, article.summary.length - 3);
-    document.getElementById("title-dw").innerHTML = article.title;
-    document.getElementById("author-dw").innerHTML = article.author;
-    document.getElementById("time-dw").innerHTML = artDate;
-    document.getElementById("img-dw").setAttribute("src", article.img);
-    document.getElementById("content-dw").innerHTML = article.content.slice(article.summary.length - 3);
-    let tagList = document.querySelector(".tag_list");
-    while (tagList.firstChild) {
-        tagList.removeChild(tagList.firstChild);
-    }
-    article.tags.forEach(tag => {
-        let newTag = document.createElement('a');
-        newTag.innerHTML = tag;
-        tagList.appendChild(newTag);
-    });
+    // requestModel.showContent('detailView').then(function (code) {
+    //     let page = document.getElementById("detail-view-page");
+    //     page.innerHTML = code;
+    //     page.style.margin = "147px auto 90px auto";
+
+
+        document.getElementById("summary-dw").innerHTML = article.summary.slice(0, article.summary.length - 3);
+        document.getElementById("title-dw").innerHTML = article.title;
+        document.getElementById("author-dw").innerHTML = article.author;
+        document.getElementById("time-dw").innerHTML = artDate;
+        document.getElementById("img-dw").setAttribute("src", article.img);
+        document.getElementById("content-dw").innerHTML = article.content.slice(article.summary.length - 3);
+        let tagList = document.querySelector(".tag_list");
+        while (tagList.firstChild) {
+            tagList.removeChild(tagList.firstChild);
+        }
+        article.tags.forEach(tag => {
+            let newTag = document.createElement('a');
+            newTag.innerHTML = tag;
+            tagList.appendChild(newTag);
+        });
+    // });
+
 
     document.getElementById("feed").style.display = "none";
     document.querySelector(".trans").style.display = "none";

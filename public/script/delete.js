@@ -2,7 +2,8 @@
 function deletePost(id) {
     if (id) setScroll();
     idEditPage = id || idEditPage;
-    requestModel.deleteArticles(idEditPage);
-    reloadNews();
-    mainPage();
+    requestModel.deleteArticles(idEditPage).then(function () {
+        reloadNews();
+        mainPage();
+    });
 }

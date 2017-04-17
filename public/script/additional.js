@@ -16,6 +16,7 @@ window.onload = function () {
     let scrollUp = document.getElementById('scrollUp');
 
     scrollUp.onclick = function () {
+        setScroll(0);
         window.scrollTo(0, 0);
     };
 
