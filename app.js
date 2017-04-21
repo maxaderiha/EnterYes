@@ -15,14 +15,14 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-// app.get('/page/:link', function (request, response) {
-//     fs.readFile('./public/' + request.params.link + '.html', 'utf8', function (error, file) {
-//         if (error) {
-//             console.log(error);
-//         }
-//         response.send(file);
-//     })
-// });
+app.get('/page/:link', function (request, response) {
+    fs.readFile('./public/pages/' + request.params.link + '.html', 'utf8', function (error, file) {
+        if (error) {
+            console.log(error);
+        }
+        response.send(file);
+    })
+});
 
 app.get('/articles', function (request, response) {
     response.json(db.articles.find());

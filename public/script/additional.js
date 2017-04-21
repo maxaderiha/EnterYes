@@ -12,11 +12,11 @@ function getSummary(param) {
 }
 
 window.onload = function () {
+    window.scrollTo(0, getScroll());
     let element = document.querySelector(".header");
     let scrollUp = document.getElementById('scrollUp');
 
     scrollUp.onclick = function () {
-        setScroll(0);
         window.scrollTo(0, 0);
     };
 

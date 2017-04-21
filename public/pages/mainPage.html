@@ -1,0 +1,34 @@
+<div class="feed" id="feed" align="center">
+</div>
+
+<template id="template-article-list-item">
+    <div class="article-list-item" data-id="id">
+        <div class="content">
+            <a><img class="article-list-item-img"></a>
+            <div class="text"><a class="href"
+                                 onclick="detailViewPage(this.parentNode.parentNode.parentNode.dataset.id);">
+                <h2 class="article-list-item-title"></h2></a>
+                <p class="article-list-item-summary">
+                </p>
+                <p class="article-list-item-author"></p><br><br>
+                <p class="article-list-item-date"></p><br><br>
+                <button type="button" class="button"
+                        onclick="deletePost(this.parentNode.parentNode.parentNode.dataset.id);">удалить
+                </button>
+                <button type="button" class="button"
+                        onclick="editModel.editPage(this.parentNode.parentNode.parentNode.dataset.id);">
+                    изменить
+                </button>
+                <div class="tab_tags">
+                    <ul class="tags-ul">
+                    </ul>
+                </div>
+                <div style="clear: left"></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<div class="trans" onclick="showMore();">
+    <a>ПОКАЗАТЬ ЕЩЁ</a>
+</div>

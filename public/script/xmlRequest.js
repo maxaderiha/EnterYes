@@ -80,26 +80,26 @@ let requestModel = (function () {
         });
     }
 
-    // function showContent(link) {
-    //     return new Promise(function (resolve, reject) {
-    //         let request = new XMLHttpRequest();
-    //         request.open('GET', '/page/' + link);
-    //
-    //         request.onload = function () {
-    //             if (request.status === 200) {
-    //                 resolve(request.responseText);
-    //             }
-    //         };
-    //         request.onerror = function () {
-    //             reject(new Error("Error"));
-    //         };
-    //
-    //         request.send();
-    //     });
-    // }
+    function showContent(link) {
+        return new Promise(function (resolve, reject) {
+            let request = new XMLHttpRequest();
+            request.open('GET', '/page/' + link);
+
+            request.onload = function () {
+                if (request.status === 200) {
+                    resolve(request.responseText);
+                }
+            };
+            request.onerror = function () {
+                reject(new Error("Error"));
+            };
+
+            request.send();
+        });
+    }
 
     return {
-        // showContent: showContent,
+        showContent: showContent,
         getArticles: getArticles,
         editArticles: editArticle,
         addArticles: addArticle,

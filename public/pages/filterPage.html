@@ -1,0 +1,16 @@
+<div class="filter-page" id="filter-id">
+    <div class="form">
+        <h2 align="center">Фильтр</h2>
+        <form class="filter-form">
+            <p>Автор:<br>
+                <input type="text" id="author"/></p>
+            <p>Дата:<br>
+                <input type="text" id="data" placeholder="ДД-ММ-ГГГГ"/></p>
+            <p>Теги:<br>
+                <input type="text" id="tag"/></p>
+            <button type="button" onclick="startFilter();">применить</button>
+            <p class="message"><a onclick="mainPageAfterFilter();">На главную</a></p>
+            <p class="error-filter">ошибка</p>
+        </form>
+    </div>
+</div>

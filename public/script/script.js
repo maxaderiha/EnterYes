@@ -184,6 +184,7 @@ function startApp() {
             renderArticles(0, amountLoadedArticles, filter);
             addUserUI();
             showTrans();
+            scrollAfterDV();
         }
     );
 }
@@ -210,7 +211,6 @@ function showMore() {
         } else {
             amountLoadedArticles += 10;
         }
-        setScroll();
         startApp();
         addUserUI();
     } else {

@@ -1,6 +1,5 @@
 "use strict";
 let addModel = (function () {
-
     function getNewArticle() {
         let curDate = new Date();
         return {
@@ -27,10 +26,8 @@ let addModel = (function () {
 
 function addPost() {
     let art = addModel.getNewArticle();
-
     if (addModel.checkForAdd(art)) {
         requestModel.addArticles(art).then(function () {
-            reloadNews();
             mainPage();
         });
     } else {

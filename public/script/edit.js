@@ -4,17 +4,15 @@ let idEditPage;
 let editModel = (function () {
 
     function editPage(id) {
-        if (id) setScroll();
         idEditPage = id || idEditPage;
         let editArticle = articleModel.getArticle(idEditPage);
-        document.getElementById("feed").style.display = "none";
-        document.getElementById("detail-view-page").style.display = "none";
-        document.querySelector(".trans").style.display = "none";
-        document.getElementById("title").value = editArticle.title;
-        document.getElementById("content").value = editArticle.content;
-        document.getElementById("tags").value = editArticle.tags;
-        document.querySelector(".error-edit").style.visibility = "hidden";
-        document.getElementById("edit-page").style.display = "block";
+        requestModel.showContent("editPage").then(function (code) {
+            document.getElementById('content-body').innerHTML = code;
+            document.getElementById("title").value = editArticle.title;
+            document.getElementById("content").value = editArticle.content;
+            document.getElementById("tags").value = editArticle.tags;
+            document.querySelector(".error-edit").style.visibility = "hidden";
+        });
         window.scrollTo(0, 0);
     }
 
@@ -47,7 +45,6 @@ function editPost() {
     let art = editModel.getNewArticle();
     if (editModel.checkForEdit(art)) {
         requestModel.editArticles(art).then(function () {
-            reloadNews();
             mainPage();
         });
     } else {

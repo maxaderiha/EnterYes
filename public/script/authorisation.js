@@ -35,9 +35,9 @@ function logIn() {
     let name = document.getElementById("login").value;
     let password = document.getElementById("password").value;
     if (userModel.checkForLogIn(name, password)) {
-        setScroll();
-        reloadNews();
-        mainPage();
+        //setScroll();
+        closeAuthorizationPage();
+        addUserUI();
     }
     else {
         document.querySelector(".incorrect-input").style.visibility = "visible";
@@ -46,6 +46,7 @@ function logIn() {
 
 function addUserUI() {
     username = localStorage.getItem("username");
+    let buttonsDv = document.querySelector(".buttons-dw");
     if (username) {
         document.getElementById("log-in").className = "fa fa-sign-out";
         document.querySelector(".name").innerHTML = username;
@@ -54,7 +55,7 @@ function addUserUI() {
         for (let i = 0; i < arr.length; i++) {
             arr[i].style.display = "block";
         }
-        document.querySelector(".buttons-dw").style.display = "block";
+        if (buttonsDv) buttonsDv.style.display = "block";
 
     } else {
         document.getElementById("log-in").className = "fa fa-sign-in";
@@ -64,6 +65,6 @@ function addUserUI() {
             arr[i].style.display = "none";
         }
         document.querySelector(".name").innerHTML = "";
-        document.querySelector(".buttons-dw").style.display = "none";
+        if (buttonsDv) buttonsDv.style.display = "none";
     }
 }

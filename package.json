@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/maxaderiha/Training/issues"
   },
-  "homepage": "https://github.com/maxaderiha/Training#readme"
+  "homepage": "https://github.com/maxaderiha/Training#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "diskdb": "^0.1.17",
+    "express": "^4.15.2",
+    "fs": "0.0.1-security"
+  }
 }

@@ -40,7 +40,6 @@ function isValidDate(val) {
 
 function startFilter() {
     if (getFilter()) {
-        reloadNews();
         mainPage();
     } else {
         document.querySelector(".error-filter").innerHTML = error;
@@ -51,6 +50,5 @@ function startFilter() {
 
 function mainPageAfterFilter() {
     filter = null;
-    reloadNews();
     mainPage();
 }

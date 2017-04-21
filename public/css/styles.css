@@ -153,13 +153,11 @@ ul a {
 
 .filter-page {
     margin-top: 123px;
-    display: none;
 }
 
 /*редактирование новости*/
 .edit-page {
     margin-top: 123px;
-    display: none;
 }
 
 /*редактирование новости*/
@@ -167,7 +165,6 @@ ul a {
 /*добавление новости*/
 .add-page {
     margin-top: 123px;
-    display: none;
 }
 
 .form {
@@ -235,7 +232,6 @@ ul a {
 .detail-view {
     margin: 147px auto 90px auto;
     width: 70%;
-    display: none;
 }
 
 .detail-view h1 {
@@ -269,6 +265,7 @@ hr {
     font-family: "PT Sans regular", Helvetica, Roboto, Arial, sans-serif;
     line-height: 1.25;
     text-align: justify;
+    white-space: pre-line;
 }
 
 .tag_list {

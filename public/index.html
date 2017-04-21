@@ -59,7 +59,8 @@
 
 <div class="wrapper">
 
-    <div class="cont">
+    <div class="cont" id="content-body">
+
         <div class="feed" id="feed" align="center">
         </div>
 
@@ -91,101 +92,14 @@
             </div>
         </template>
 
-        <div class="add-page" id="add-page">
-            <div class="form">
-                <h2 align="center">Добавление новости</h2>
-                <form class="add-form">
-                    <p>Заголовок:<br>
-                        <input type="text" id="title-add"/></p>
-                    <p>Описание:<br>
-                        <textarea name="comment" id="content-add" cols="50" rows="15"></textarea></p>
-                    <p>Теги:<br>
-                        <input type="text" id="tags-add"/></p>
-                    <p>Фото:<br>
-                        <input class="add-photo" type="file" name="image"></p>
-                    <button type="button" onclick="addPost()">добавить</button>
-                    <p class="message"><a onclick="mainPage()">На главную</a></p>
-                    <p class="error-add">неверные данные</p>
-                </form>
-
-            </div>
-        </div>
-
-        <div class="edit-page" id="edit-page">
-            <div class="form">
-                <h2 align="center">Редактирование новости</h2>
-                <form class="add-form">
-                    <p>Заголовок:<br>
-                        <input type="text" id="title"/></p>
-                    <p>Описание:<br>
-                        <textarea name="comment" id="content" cols="50" rows="15"></textarea></p>
-                    <p>Теги:<br>
-                        <input type="text" id="tags"/></p>
-                    <p>Фото:<br>
-                        <input class="add-photo" type="file" name="image"></p>
-                    <button type="button" onclick="editPost();">изменить
-                    </button>
-                    <p class="message"><a onclick="mainPage()">На главную</a></p>
-                    <p class="error-edit">неверные данные</p>
-                </form>
-            </div>
-        </div>
-
-        <div class="filter-page" id="filter-id">
-            <div class="form">
-                <h2 align="center">Фильтр</h2>
-                <form class="filter-form">
-                    <p>Автор:<br>
-                        <input type="text" id="author"/></p>
-                    <p>Дата:<br>
-                        <input type="text" id="data" placeholder="ДД-ММ-ГГГГ"/></p>
-                    <p>Теги:<br>
-                        <input type="text" id="tag"/></p>
-                    <button type="button" onclick="startFilter();">применить</button>
-                    <p class="message"><a onclick="mainPageAfterFilter();">На главную</a></p>
-                    <p class="error-filter">ошибка</p>
-                </form>
-            </div>
-        </div>
-
-        <div class="background-login-page" id="login-page">
-            <div class="login-page">
-                <div class="form-login-page">
-                    <form class="login-form">
-                        <input class="input-login-page" type="text" placeholder="Логин" id="login"/>
-                        <input class="input-login-page" type="password" placeholder="Пароль" id="password"/>
-                        <button class="button-login-page" type="button" onclick="logIn();">войти</button>
-                        <p class="message"><a onclick="mainPage()">На главную</a></p>
-                        <p class="incorrect-input">неверный логин или пароль</p>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="detail-view" id="detail-view-page">
-            <p class="title-dw">
-            <h1 id="title-dw"></h1>
-            </p>
-            <p class="author-dw" id="author-dw"></p>
-            <time id="time-dw"></time>
-            <hr>
-            <p class="summary-dw" id="summary-dw">
-            </p>
-            <img class="article-list-item-img" id="img-dw">
-            <p class="content-dw" id="content-dw">
-            </p>
-            <hr>
-            <div class="tag_list">
-            </div>
-            <div class="buttons-dw">
-                <button type="button" class="remove" onclick="deletePost();">удалить</button>
-                <button type="button" class="edit" onclick="editModel.editPage();">изменить</button>
-            </div>
-        </div>
-
         <div class="trans" onclick="showMore();">
             <a>ПОКАЗАТЬ ЕЩЁ</a>
         </div>
+
+    </div>
+
+    <div class="background-login-page" id="login-page">
+
     </div>
 
     <div id="scrollUp">
