@@ -10,9 +10,7 @@ const articleModel = (function () {
         }
         top = top || 10;
 
-        articles.sort((a, b) => {
-            return b.createdAt - a.createdAt;
-        });
+        articles.sort((a, b) => b.createdAt - a.createdAt);
 
         if (!filterConfig) {
             return articles.slice(skip, top + skip);
@@ -22,11 +20,8 @@ const articleModel = (function () {
             if (filterConfig.author && element.author !== filterConfig.author) {
                 return false;
             }
-            if (filterConfig.tags && !filterConfig.tags.some((tag) => {
-                return element.tags.some((tagArt) => {
-                    return tag === tagArt;
-                });
-            })) {
+            if (filterConfig.tags &&
+                !filterConfig.tags.some(tag => element.tags.some(tagArt => tag === tagArt))) {
                 return false;
             }
             return !(filterConfig.createdAt &&
@@ -121,16 +116,13 @@ const articleRenderer = (function () {
         ARTICLE_LIST_NODE.innerHTML = '';
     }
 
-    function renderArticles(articles) {
+    function rendArticles(articles) {
         if (!articles) return;
-
-        return articles.map((article) => {
-            return renderArticle(article);
-        });
+        return articles.map(article => renderArticle(article));
     }
 
     function insertArticlesInDOM(articles) {
-        const articlesNodes = renderArticles(articles);
+        const articlesNodes = rendArticles(articles);
 
         articlesNodes.forEach((node) => {
             ARTICLE_LIST_NODE.appendChild(node);
