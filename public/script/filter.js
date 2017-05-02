@@ -1,12 +1,13 @@
-"use strict";
+'use strict';
+
 let filter = null;
-let error = "введите данные";
+let error = 'введите данные';
 
 function getFilter() {
     let flag = false;
-    let name = document.getElementById("author").value;
-    let tags = document.getElementById("tag").value;
-    let createdAt = document.getElementById("data").value;
+    const name = document.getElementById('author').value;
+    let tags = document.getElementById('tag').value;
+    const createdAt = document.getElementById('data').value;
     filter = {};
     if (name) {
         filter.author = name;
@@ -18,12 +19,12 @@ function getFilter() {
         flag = true;
     }
     if (createdAt) {
-        let date = isValidDate(createdAt);
+        const date = isValidDate(createdAt);
         if (date) {
             filter.createdAt = date;
             flag = true;
         } else {
-            error = "неверный формат даты";
+            error = 'неверный формат даты';
             flag = false;
         }
     }
@@ -31,20 +32,26 @@ function getFilter() {
 }
 
 function isValidDate(val) {
-    let val_r = val.split(/-/);
-    val_r[1] -= 1;
-    let curDate = new Date(val_r[2], val_r[1], val_r[0]);
-    if (!(curDate.getFullYear() == val_r[2] && curDate.getMonth() == val_r[1] && curDate.getDate() == val_r[0])) return false;
+    const value = val.split(/-/);
+    value[1] -= 1;
+    const curDate = new Date(value[2], value[1], value[0]);
+    if (!(curDate.getFullYear() === (Number)(value[2]) && curDate.getMonth() === value[1]
+        && curDate.getDate() === (Number)(value[0]))) {
+        return false;
+    }
     return curDate;
 }
 
-function startFilter() {
-    if (getFilter()) {
+function startFilter(filterConfig) {
+    if (filterConfig) {
+        filter = filterConfig;
+        mainPage();
+    } else if (getFilter()) {
         mainPage();
     } else {
-        document.querySelector(".error-filter").innerHTML = error;
-        document.querySelector(".error-filter").style.visibility = "visible";
-        error = "введите данные";
+        document.querySelector('.error-filter').innerHTML = error;
+        document.querySelector('.error-filter').style.visibility = 'visible';
+        error = 'введите данные';
     }
 }
 

@@ -1,17 +1,20 @@
-"use strict";
-let addModel = (function () {
+'use strict';
+
+const addModel = (function () {
     function getNewArticle() {
-        let curDate = new Date();
-        return {
-            title: document.getElementById("title-add").value,
-            content: document.getElementById("content-add").value,
-            summary: getSummary(document.getElementById("content-add")),
-            createdAt: curDate,
-            author: username,
-            id: (String)(username + curDate),
-            tags: document.getElementById("tags-add").value.split(/[\s.,]+/),
-            img: 'https://droidtalks.com/wp-content/uploads/2016/02/space.jpg'
-        }
+        const curDate = new Date();
+        requestModel.getUserName().then(
+            username =>
+                addPost({
+                    title: document.getElementById('title-add').value,
+                    content: document.getElementById('content-add').value,
+                    summary: getSummary(document.getElementById('content-add')),
+                    createdAt: curDate,
+                    author: username,
+                    id: (String)(username + curDate),
+                    tags: document.getElementById('tags-add').value.split(/[\s.,]+/),
+                    img: 'https://droidtalks.com/wp-content/uploads/2016/02/space.jpg',
+                }));
     }
 
     function checkForAdd(article) {
@@ -19,18 +22,29 @@ let addModel = (function () {
     }
 
     return {
-        getNewArticle: getNewArticle,
-        checkForAdd: checkForAdd
-    }
+        getNewArticle,
+        checkForAdd,
+    };
 }());
 
 function addPost() {
-    let art = addModel.getNewArticle();
-    if (addModel.checkForAdd(art)) {
-        requestModel.addArticles(art).then(function () {
-            mainPage();
+    const curDate = new Date();
+    requestModel.getUserName().then(
+        (username) => {
+            const art = {
+                title: document.getElementById('title-add').value,
+                content: document.getElementById('content-add').value,
+                summary: getSummary(document.getElementById('content-add')),
+                createdAt: curDate,
+                author: username,
+                id: (String)(username + curDate),
+                tags: document.getElementById('tags-add').value.split(/[\s.,]+/),
+                img: 'https://droidtalks.com/wp-content/uploads/2016/02/space.jpg',
+            };
+            if (addModel.checkForAdd(art)) {
+                requestModel.addArticle(art).then(() => mainPage());
+            } else {
+                document.querySelector('.error-add').style.visibility = 'visible';
+            }
         });
-    } else {
-        document.querySelector(".error-add").style.visibility = "visible";
-    }
 }

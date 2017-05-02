@@ -23,7 +23,7 @@
     <div class="fixed">
         <div class="header">
             <div class="logo-black">
-                <img class="logo-bl" src="images/logo-black.png" alt="EnterYes" onclick="mainPage();">
+                <img class="logo-bl" src="images/logo-black.png" alt="EnterYes" onclick="mainPageAfterFilter();">
             </div>
             <div class="box-filter">
                 <span class="icon-bars"><i class="fa fa-filter" onclick="filterPage();"></i></span>
@@ -41,16 +41,16 @@
         <div class="tags">
             <nav>
                 <ul>
-                    <li><a>#HOME</a></li>
-                    <li><a>#ABOUT</a></li>
-                    <li><a>#SERVICES</a></li>
-                    <li><a>#PARTNERS</a></li>
-                    <li><a>#CUSTOMERS</a></li>
-                    <li><a>#PROJECTS</a></li>
-                    <li><a>#CAREERS</a></li>
-                    <li><a>#CONTACT</a></li>
-                    <li><a>#JOBS</a></li>
-                    <li><a>#POLITICS</a></li>
+                    <li onclick="startFilter({tags: ['#ПРОИСШЕСТВИЯ']})"><a>#ПРОИСШЕСТВИЯ</a></li>
+                    <li onclick="startFilter({tags: ['#ЭКОНОМИКА']})"><a>#ЭКОНОМИКА</a></li>
+                    <li onclick="startFilter({tags: ['#ПОЛИТИКА']})"><a>#ПОЛИТИКА</a></li>
+                    <li onclick="startFilter({tags: ['#СПОРТ']})"><a>#СПОРТ</a></li>
+                    <li onclick="startFilter({tags: ['#ПУТЕШЕСТВИЯ']})"><a>#ПУТЕШЕСТВИЯ</a></li>
+                    <li onclick="startFilter({tags: ['#РАБОТА']})"><a>#РАБОТА</a></li>
+                    <li onclick="startFilter({tags: ['#ЛЕДИ']})"><a>#ЛЕДИ</a></li>
+                    <li onclick="startFilter({tags: ['#ОБЩЕСТВО']})"><a>#ОБЩЕСТВО</a></li>
+                    <li onclick="startFilter({tags: ['#АВТО']})"><a>#АВТО</a></li>
+                    <li onclick="startFilter({tags: ['#ФИНАНСЫ']})"><a>#ФИНАНСЫ</a></li>
                 </ul>
             </nav>
         </div>
@@ -103,7 +103,7 @@
     </div>
 
     <div id="scrollUp">
-        <i class="fa fa-arrow-up fa-3x" aria-hidden="true"></i>
+        <i class="fa fa-arrow-up fa-3x" aria-hidden="true" id="upOrBackButton"></i>
     </div>
 
     <footer>
@@ -118,7 +118,16 @@
                 <p>Новостной портал<br>
                     maxaderiha@gmail.com
                 </p>
-                <p class="data">28/02/2017</p>
+                <p class="data">
+                    <script>
+                        document.querySelector(".data").innerHTML = new Date().toLocaleDateString("ru", {
+                            weekday: 'narrow',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    </script>
+                </p>
             </div>
             <div class="clear"></div>
         </div>

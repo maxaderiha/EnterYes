@@ -1,32 +1,43 @@
-"use strict";
+'use strict';
+
 function getSummary(param) {
-    param = param.value;
-    if (param.length === 0) {
+    if (param.value.length === 0) {
         return;
     }
-    if (param.length <= 197) {
-        return param + "...";
-    } else {
-        return param.slice(0, 197) + "...";
+    if (param.value.length <= 197) {
+        return `${param.value}...`;
     }
+    return `${param.value.slice(0, 197)}...`;
 }
 
-window.onload = function () {
+window.onload = () => {
     window.scrollTo(0, getScroll());
-    let element = document.querySelector(".header");
-    let scrollUp = document.getElementById('scrollUp');
+    const element = document.querySelector('.header');
+    const scrollUp = document.getElementById('scrollUp');
+    const arrow = document.getElementById('upOrBackButton');
 
-    scrollUp.onclick = function () {
-        window.scrollTo(0, 0);
+    scrollUp.onclick = () => {
+        if (arrow.className === 'fa fa-arrow-up fa-3x') {
+            window.scrollTo(0, 0);
+        } else {
+            mainPage();
+        }
     };
 
-    window.onscroll = function () {
+    window.onscroll = () => {
+        const flag = document.querySelector('.detail-view');
         if (window.pageYOffset >= 57) {
-            element.style.display = "none";
+            element.style.display = 'none';
             scrollUp.style.display = 'block';
+            arrow.className = 'fa fa-arrow-up fa-3x';
         } else {
-            element.style.display = "block";
-            scrollUp.style.display = 'none';
+            element.style.display = 'block';
+            if (flag) {
+                scrollUp.style.display = 'block';
+                arrow.className = 'fa fa-arrow-left fa-3x';
+            } else {
+                scrollUp.style.display = 'none';
+            }
         }
     };
 };
