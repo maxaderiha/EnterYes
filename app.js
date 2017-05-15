@@ -3,16 +3,12 @@ const express = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
-const SessionStore = require('connect-diskdb')(session);
+const SessionStore = require('connect-mongo')(session);
+const Users = require('./db.js').users;
+const Articles = require('./db.js').articles;
 
-const store = new SessionStore({path: './db', name: 'sessions'});
-
+const store = new SessionStore({url: 'mongodb://localhost/maxaderiha'});
 const app = express();
-
-const db = require('diskdb');
-
-db.connect('./db', ['articles', 'users']);
-
 const bodyParser = require('body-parser');
 
 app.set('port', (process.env.PORT || 3000));
@@ -23,6 +19,16 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    store,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.get('/page/:link', (request, response) =>
     fs.readFile(`./public/pages/${request.params.link}.html`, 'utf8', (error, file) => {
         if (error) {
@@ -31,26 +37,26 @@ app.get('/page/:link', (request, response) =>
         response.send(file);
     }));
 
-app.get('/articles', (request, response) =>
-    response.json(db.articles.find()));
+app.get('/articles', (request, response) => {
+    Articles.find((err, data) => !err ? response.json(data) : response.sendStatus(500));
+});
 
 app.get('/articles/:id', (request, response) =>
-    response.json(db.articles.findOne({id: request.params.id})));
+    Articles.findById(request.params.id,
+        (err, data) => !err ? response.json(data) : response.sendStatus(500)));
 
-app.post('/articles', (request, response) =>
-    response.json(db.articles.save(request.body)));
-
+app.post('/articles', (request, response) => {
+    new Articles(request.body).save(
+        err => !err ? response.sendStatus(200) : response.sendStatus(500));
+});
 
 app.delete('/articles/:id', (request, response) =>
-    response.json(db.articles.remove({id: request.params.id})));
+    Articles.findByIdAndRemove(request.params.id,
+        err => !err ? response.sendStatus(200) : response.sendStatus(500)));
 
 app.patch('/articles/', (request, response) =>
-    response.json(db.articles.update({id: request.body.id}, request.body)));
-
-app.use(session({secret: 'secret', resave: false, saveUninitialized: true, store}));
-
-app.use(passport.initialize());
-app.use(passport.session());
+    Articles.findByIdAndUpdate(request.body.id, {$set: request.body},
+        err => !err ? response.sendStatus(200) : response.sendStatus(500)));
 
 passport.serializeUser((user, done) => done(null, user));
 
@@ -61,16 +67,20 @@ passport.deserializeUser((user, done) => {
 
 passport.use('login', new LocalStrategy({passReqToCallback: true},
     (req, username, password, done) => {
-        const user = db.users.findOne({username});
-        if (!user) {
-            console.log(`User Not Found with username${username}`);
-            return done(null, false, {message: 'user not found'});
-        }
-        if (password !== user.password) {
-            console.log('Invalid Password');
-            return done(null, false, {message: 'incorrect password'});
-        }
-        return done(null, user);
+        Users.findOne({username}, (err, user) => {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                console.log(`User Not Found with username${username}`);
+                return done(null, false, {message: 'user not found'});
+            }
+            if (password !== user.password) {
+                console.log('Invalid Password');
+                return done(null, false, {message: 'incorrect password'});
+            }
+            done(null, user);
+        });
     }));
 
 app.post('/login', passport.authenticate('login'), (req, res) => res.sendStatus(200));

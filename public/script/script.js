@@ -31,7 +31,7 @@ const articleModel = (function () {
     }
 
     function getArticle(id) {
-        return articles.find(article => article.id === id);
+        return articles.find(article => article._id === id);
     }
 
     function isArticle(id) {
@@ -39,7 +39,7 @@ const articleModel = (function () {
     }
 
     function validateArticle(article) {
-        return (typeof article.id === 'string' &&
+        return (
         typeof article.createdAt === 'object' &&
         typeof article.tags === 'object' && article.tags.length >= 1 && article.tags.length <= 5 &&
         typeof article.author === 'string' && article.author.length > 0 &&
@@ -131,7 +131,7 @@ const articleRenderer = (function () {
 
     function renderArticle(article) {
         const template = ARTICLE_TEMPLATE;
-        template.content.querySelector('.article-list-item').dataset.id = article.id;
+        template.content.querySelector('.article-list-item').dataset.id = article._id;
         template.content.querySelector('.article-list-item-title').textContent = article.title;
         template.content.querySelector('.article-list-item-summary').textContent = article.summary;
         template.content.querySelector('.article-list-item-author').textContent = article.author;

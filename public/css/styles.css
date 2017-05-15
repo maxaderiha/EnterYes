@@ -191,11 +191,6 @@ ul a {
     border-radius: 1px;
 }
 
-.form .add-photo {
-    border: 0;
-    background: #FFFFFF;
-}
-
 .form p {
     text-align: left;
     font: 14px 'Roboto', sans-serif;
@@ -287,6 +282,7 @@ hr {
 .tag_list a:hover, .remove:hover, .edit:hover {
     color: #6D7174;
     border-color: #3C3F41;
+    transition: 0.7s
 }
 
 .edit, .remove {
@@ -580,6 +576,7 @@ footer {
 
 h2 {
     font-size: 1.65em;
+    padding: 0 10px;
 }
 
 #scrollUp {
@@ -587,7 +584,7 @@ h2 {
     padding: 10px;
     opacity: 0.5;
     background: #aaa;
-    border-radius: 5px;
+    border-radius: 2px;
     left: 2.8%;
     bottom: 2.8%;
     display: none;

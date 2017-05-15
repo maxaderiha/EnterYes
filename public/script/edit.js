@@ -12,6 +12,7 @@ const editModel = (function () {
             document.getElementById('title').value = editArticle.title;
             document.getElementById('content').value = editArticle.content;
             document.getElementById('tags').value = editArticle.tags;
+            document.getElementById('add-photo').value = editArticle.img;
             document.getElementById('scrollUp').style.display = 'none';
             document.querySelector('.error-edit').style.visibility = 'hidden';
         });
@@ -19,12 +20,14 @@ const editModel = (function () {
     }
 
     function getNewArticle() {
+        const defaultImage = 'https://yandex.by/images/today?size=1920x1080';
         return {
             title: document.getElementById('title').value,
             id: idEditPage,
             content: document.getElementById('content').value,
             summary: getSummary(content),
             tags: document.getElementById('tags').value.split(/[\s.,]+/),
+            img: document.getElementById('add-photo').value || defaultImage,
         };
     }
 
