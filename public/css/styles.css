@@ -86,7 +86,10 @@ header {
 
 .logo-black img {
     width: 201px;
-    height: 39px;
+}
+
+.m-logo-bl {
+    display: none;
 }
 
 /*шапка*/
@@ -212,7 +215,6 @@ ul a {
     color: #ebebeb;
     font-size: 14px;
     cursor: pointer;
-    width: 30%;
 }
 
 .form button:hover {
@@ -321,7 +323,7 @@ hr {
     left: 5%;
     bottom: 2px;
     width: 90%;
-    max-height:95%;
+    max-height: 95%;
     box-sizing: border-box;
     color: #FFF;
     font-family: Arial, Helvetica, sans-serif;
@@ -496,16 +498,16 @@ footer {
     display: none;
 }
 
-.login-page {
+.login-page, .error-page {
     width: 360px;
     padding: 10% 0 0;
     margin: auto;
 }
 
-.form-login-page {
+.form-login-page, .form-error-page {
     position: relative;
     background: #FFFFFF;
-    max-width: 360px;
+    max-width: 68.35%;
     margin: 0 auto 100px;
     padding: 45px;
 }
@@ -532,7 +534,6 @@ footer {
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
-    /*transition: all 0.3 ease;*/
     cursor: pointer;
 }
 
@@ -548,7 +549,7 @@ footer {
     text-align: center;
 }
 
-.form-login-page a, .form a {
+.form-login-page a, .form a, .form-error-page a {
     color: #3C3F41;
     text-decoration: none;
     cursor: pointer;
@@ -562,6 +563,13 @@ footer {
 }
 
 /*авторизация*/
+
+.form-error-page .err {
+    font-size: 2em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0 -5px 35px rgba(255, 255, 255, 0.3);
+}
 
 .add-news-button {
     position: absolute;
@@ -598,6 +606,10 @@ h2 {
 }
 
 @media all and (max-width: 700px) {
+    .close {
+        display: none;
+    }
+
     .article-list-item-summary {
         display: none;
     }
@@ -636,7 +648,7 @@ h2 {
     }
 
     .feed {
-        margin-top: 95px;
+        margin-top: 75px;
     }
 
     .filter-page, .edit-page, .add-page {
@@ -644,7 +656,32 @@ h2 {
     }
 
     .detail-view {
-        margin-top: 149px;
+        margin-top: 120px;
+    }
+
+    .logo-white, .logo-bl {
+        display: none;
+    }
+
+    .logo-white, .contacts {
+        text-align: left;
+        left: 0;
+    }
+
+    .m-logo-bl {
+        display: block;
+    }
+
+    .logo-black img {
+        width: 49px;
+    }
+
+    .form {
+        max-width: 68.35%;
+    }
+
+    *, body {
+        user-select: none;
     }
 }
 

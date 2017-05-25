@@ -41,9 +41,34 @@ app.get('/articles', (request, response) => {
     Articles.find((err, data) => !err ? response.json(data) : response.sendStatus(500));
 });
 
-app.get('/articles/:id', (request, response) =>
+app.put('/articles', (request, response) => {
+    const filter = {};
+    if (request.body.filter) {
+        if (request.body.filter.tags) {
+            filter.tags = {$all: request.body.filter.tags};
+        }
+        if (request.body.filter.createdAt) {
+            filter.createdAt = {
+                $gte: new Date(request.body.filter.createdAt),
+                $lt: new Date(new Date(request.body.filter.createdAt).getTime()
+                    + (24 * 3600 * 1000))
+            };
+        }
+        if (request.body.filter.author) {
+            filter.author = request.body.filter.author;
+        }
+    }
+    Articles.find(filter)
+        .skip(request.body.skip || 0)
+        .limit(request.body.top || 10)
+        .sort({createdAt: -1})
+        .exec((err, data) => !err ? response.json(data) : response.sendStatus(500));
+});
+
+app.get('/articles/:id', (request, response) => {
     Articles.findById(request.params.id,
-        (err, data) => !err ? response.json(data) : response.sendStatus(500)));
+        (err, data) => !err ? response.json(data) : response.sendStatus(500));
+});
 
 app.post('/articles', (request, response) => {
     new Articles(request.body).save(

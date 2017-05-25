@@ -34,9 +34,9 @@ function getFilter() {
 function isValidDate(val) {
     const value = val.split(/-/);
     value[1] -= 1;
-    const curDate = new Date(value[2], value[1], value[0]);
-    if (!(curDate.getFullYear() === (Number)(value[2]) && curDate.getMonth() === value[1]
-        && curDate.getDate() === (Number)(value[0]))) {
+    const curDate = new Date(value[0], value[1], value[2]);
+    if (!(curDate.getFullYear() === (Number)(value[0]) && curDate.getMonth() === value[1]
+        && curDate.getDate() === (Number)(value[2]))) {
         return false;
     }
     return curDate;
@@ -55,7 +55,7 @@ function startFilter(filterConfig) {
     }
 }
 
-function mainPageAfterFilter() {
+function mainPageWithoutFilter() {
     filter = null;
     mainPage();
 }

@@ -1,43 +1,9 @@
 'use strict';
 
+let amountLoadedArticles = 10;
+const limit = 10;
+
 const articleModel = (function () {
-    let articles = [];
-
-    function getArticles(skip, top, filterConfig) {
-        skip = skip || 0;
-        if (skip >= articles.length) {
-            return null;
-        }
-        top = top || 10;
-
-        articles.sort((a, b) => b.createdAt - a.createdAt);
-
-        if (!filterConfig) {
-            return articles.slice(skip, top + skip);
-        }
-
-        const newArticles = articles.filter((element) => {
-            if (filterConfig.author && element.author !== filterConfig.author) {
-                return false;
-            }
-            if (filterConfig.tags &&
-                !filterConfig.tags.some(tag => element.tags.some(tagArt => tag === tagArt))) {
-                return false;
-            }
-            return !(filterConfig.createdAt &&
-            element.createdAt.toDateString() !== filterConfig.createdAt.toDateString());
-        });
-        return newArticles.slice(skip, top + skip);
-    }
-
-    function getArticle(id) {
-        return articles.find(article => article._id === id);
-    }
-
-    function isArticle(id) {
-        return articles.indexOf(getArticle(id));
-    }
-
     function validateArticle(article) {
         return (
         typeof article.createdAt === 'object' &&
@@ -47,59 +13,8 @@ const articleModel = (function () {
         typeof article.title === 'string' && article.title.length > 0 && article.title.length <= 100);
     }
 
-    function addArticle(article) {
-        articles.push(article);
-    }
-
-    function editArticle(id, article) {
-        const index = isArticle(id);
-        if (index === -1) {
-            return false;
-        }
-        if (article.id && article.author && article.createdAt) {
-            return false;
-        }
-        if (article.title && typeof article.title === 'string' && article.title.length > 0 &&
-            article.title.length <= 100) {
-            articles[index].title = article.title;
-        }
-        if (article.summary && typeof article.summary === 'string' && article.summary.length > 0 &&
-            article.summary.length <= 200) {
-            articles[index].summary = article.summary;
-        }
-        if (article.content && typeof article.content === 'string' && article.content.length > 0) {
-            articles[index].content = article.content;
-        }
-        if (article.tags[0] !== '' && article.tags && article.tags.length >= 1 && article.tags.length <= 5) {
-            articles[index].tags = article.tags;
-        }
-        return true;
-    }
-
-    function removeArticle(id) {
-        if (isArticle(id) === -1) return false;
-        articles.splice(isArticle(id), 1);
-        return true;
-    }
-
-    function replaceArticles() {
-        return new Promise(resolve => requestModel.getArticles().then(
-            (array) => {
-                articles = array;
-                count = articles.length;
-                resolve();
-            }));
-    }
-
     return {
-        getArticles,
-        getArticle,
         validateArticle,
-        addArticle,
-        editArticle,
-        removeArticle,
-        replaceArticles,
-        getArticlesLength: articles.length,
     };
 }());
 
@@ -153,55 +68,53 @@ const articleRenderer = (function () {
     };
 }());
 
-let amountLoadedArticles = 10;
-
-let count;
-
 function startApp() {
-    articleModel.replaceArticles().then(
-        () => {
-            articleModel.replaceArticles();
-            articleRenderer.init();
-
-            renderArticles(0, amountLoadedArticles, filter);
-            addUserUI();
-            showTrans();
-            scrollAfterDV();
-        });
-}
-
-function showTrans() {
-    document.querySelector('.trans').style.display = 'none';
-    if (amountLoadedArticles < count) {
-        document.querySelector('.trans').style.display = 'block';
-    }
+    articleRenderer.init();
+    renderArticles(0, limit, filter);
 }
 
 function renderArticles(skip, top, filter) {
     articleRenderer.removeArticlesFromDom();
-    const articles = articleModel.getArticles(skip, top, filter);
-    if (filter) count = articles.length;
-    articleRenderer.insertArticlesInDOM(articles);
+    requestModel.getArticles(skip, top + 1, filter).then((articles) => {
+        if (articles.length === 0) errorPage();
+        articleRenderer.insertArticlesInDOM(articles.slice(0,
+            showTransButton(articles.length, top)));
+        addUserUI();
+        scrollAfterDV();
+    });
+}
+
+function showTransButton(length, param) {
+    const transButton = document.querySelector('.trans');
+    if (length === param + 1) {
+        transButton.style.display = 'block';
+        return length - 1;
+    }
+    transButton.style.display = 'none';
+    return length;
+}
+
+function incAmountLoadedArticles(length, param) {
+    if (length === param + 1) {
+        amountLoadedArticles += length - 1;
+        return;
+    }
+    amountLoadedArticles += length;
 }
 
 function showMore() {
-    const key = count - amountLoadedArticles;
-    if (key > 0) {
-        if (key < 10) {
-            amountLoadedArticles += key;
-        } else {
-            amountLoadedArticles += 10;
-        }
-        startApp();
-        addUserUI();
-    } else {
-        document.querySelector('.trans').style.display = 'none';
-    }
+    requestModel.getArticles(amountLoadedArticles, limit + 1, filter)
+        .then((articles) => {
+            incAmountLoadedArticles(articles.length, limit);
+            articleRenderer.insertArticlesInDOM(articles.slice(0,
+                showTransButton(articles.length, limit)));
+            addUserUI();
+        });
 }
 
 function reloadNews() {
-    startApp();
-    addUserUI();
+    articleRenderer.init();
+    renderArticles(0, amountLoadedArticles, filter);
 }
 
 document.addEventListener('DOMContentLoaded', startApp);

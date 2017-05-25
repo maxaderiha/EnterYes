@@ -6,17 +6,18 @@ const editModel = (function () {
     function editPage(id) {
         if (id) setScroll(window.pageYOffset);
         idEditPage = id || idEditPage;
-        const editArticle = articleModel.getArticle(idEditPage);
-        requestModel.showContent('editPage').then((code) => {
-            document.getElementById('content-body').innerHTML = code;
-            document.getElementById('title').value = editArticle.title;
-            document.getElementById('content').value = editArticle.content;
-            document.getElementById('tags').value = editArticle.tags;
-            document.getElementById('add-photo').value = editArticle.img;
-            document.getElementById('scrollUp').style.display = 'none';
-            document.querySelector('.error-edit').style.visibility = 'hidden';
+        requestModel.getArticle(idEditPage).then((editArticle) => {
+            requestModel.showContent('editPage').then((code) => {
+                document.getElementById('content-body').innerHTML = code;
+                document.getElementById('title').value = editArticle.title;
+                document.getElementById('content').value = editArticle.content;
+                document.getElementById('tags').value = editArticle.tags;
+                document.getElementById('add-photo').value = editArticle.img;
+                document.getElementById('scrollUp').style.display = 'none';
+                document.querySelector('.error-edit').style.visibility = 'hidden';
+            });
+            window.scrollTo(0, 0);
         });
-        window.scrollTo(0, 0);
     }
 
     function getNewArticle() {

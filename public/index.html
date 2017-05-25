@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="События и новости 24 часа в сутка на EnterYes.by">
     <meta name="author" content="Maxim Aderiha">
     <link rel="stylesheet" href="css/styles.css" type="text/css">
@@ -24,32 +25,33 @@
     <div class="fixed">
         <div class="header">
             <div class="logo-black">
-                <img class="logo-bl" src="images/logo-black.png" alt="EnterYes" onclick="mainPageAfterFilter();">
+                <img class="logo-bl" src="images/logo-black.png" alt="EnterYes" onclick="mainPageWithoutFilter();">
+                <img class="m-logo-bl" src="images/ml.png" alt="EnterYes" onclick="mainPageWithoutFilter();">
             </div>
             <div class="box-filter">
-                <span class="icon-bars"><i class="fa fa-filter" onclick="filterPage();"></i></span>
+                <span class="icon-bars" title="Фильтр"><i class="fa fa-filter" onclick="filterPage();"></i></span>
             </div>
             <div class="box-in">
                 <span class="icon-in"><i class="fa fa-sign-in" id="log-in" aria-hidden="true"
                                          onclick="authorizationPage();"></i></span>
             </div>
             <div class="add-news-button">
-                <span class="icon-in"><i class="fa fa-plus" id="add-new" aria-hidden="true"
-                                         onclick="addPage();"></i></span>
+                <span class="icon-in" title="Добавить новость"><i class="fa fa-plus" id="add-new" aria-hidden="true"
+                                                                  onclick="addPage();"></i></span>
             </div>
             <p class=" name"></p>
         </div>
         <div class="tags">
             <nav>
                 <ul>
-                    <li onclick="startFilter({tags: ['#ПРОИСШЕСТВИЯ']})"><a>#ПРОИСШЕСТВИЯ</a></li>
-                    <li onclick="startFilter({tags: ['#ЭКОНОМИКА']})"><a>#ЭКОНОМИКА</a></li>
+                    <li class="close" onclick="startFilter({tags: ['#ПРОИСШЕСТВИЯ']})"><a>#ПРОИСШЕСТВИЯ</a></li>
+                    <li class="close" onclick="startFilter({tags: ['#ЭКОНОМИКА']})"><a>#ЭКОНОМИКА</a></li>
                     <li onclick="startFilter({tags: ['#ПОЛИТИКА']})"><a>#ПОЛИТИКА</a></li>
                     <li onclick="startFilter({tags: ['#СПОРТ']})"><a>#СПОРТ</a></li>
-                    <li onclick="startFilter({tags: ['#ПУТЕШЕСТВИЯ']})"><a>#ПУТЕШЕСТВИЯ</a></li>
+                    <li class="close" onclick="startFilter({tags: ['#ПУТЕШЕСТВИЯ']})"><a>#ПУТЕШЕСТВИЯ</a></li>
                     <li onclick="startFilter({tags: ['#РАБОТА']})"><a>#РАБОТА</a></li>
-                    <li onclick="startFilter({tags: ['#ЛЕДИ']})"><a>#ЛЕДИ</a></li>
-                    <li onclick="startFilter({tags: ['#ОБЩЕСТВО']})"><a>#ОБЩЕСТВО</a></li>
+                    <li class="close" onclick="startFilter({tags: ['#ЛЕДИ']})"><a>#ЛЕДИ</a></li>
+                    <li class="close" onclick="startFilter({tags: ['#ОБЩЕСТВО']})"><a>#ОБЩЕСТВО</a></li>
                     <li onclick="startFilter({tags: ['#АВТО']})"><a>#АВТО</a></li>
                     <li onclick="startFilter({tags: ['#ФИНАНСЫ']})"><a>#ФИНАНСЫ</a></li>
                 </ul>

@@ -1,10 +1,10 @@
 'use strict';
 
 const requestModel = (function () {
-    function getArticles() {
+    function getArticle(id) {
         return new Promise((resolve, reject) => {
             const request = new XMLHttpRequest();
-            request.open('GET', '/articles');
+            request.open('GET', `/articles/${id}`);
 
             request.onload = () => {
                 if (request.status === 200) {
@@ -20,6 +20,28 @@ const requestModel = (function () {
                 reject(new Error('Error'));
             };
             request.send();
+        });
+    }
+
+    function getArticles(skip, top, filter) {
+        return new Promise((resolve, reject) => {
+            const request = new XMLHttpRequest();
+            request.open('PUT', '/articles');
+            request.setRequestHeader('content-type', 'application/json');
+            request.onload = () => {
+                if (request.status === 200) {
+                    resolve(JSON.parse(request.responseText, (key, value) => {
+                        if (key === 'createdAt') {
+                            return new Date(value);
+                        }
+                        return value;
+                    }));
+                }
+            };
+            request.onerror = () => {
+                reject(new Error('Error'));
+            };
+            request.send(JSON.stringify({skip, top, filter}));
         });
     }
 
@@ -155,5 +177,6 @@ const requestModel = (function () {
         editArticle,
         addArticle,
         deleteArticle,
+        getArticle,
     };
 }());

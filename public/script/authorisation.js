@@ -18,6 +18,7 @@ function addUserUI() {
     requestModel.getUserName().then(
         (username) => {
             document.getElementById('log-in').className = 'fa fa-sign-out';
+            document.querySelector('.icon-in').title = 'Выйти';
             document.querySelector('.name').innerHTML = username;
             document.querySelector('.add-news-button').style.display = 'block';
             const arr = document.getElementsByClassName('button');
@@ -28,6 +29,7 @@ function addUserUI() {
         },
         () => {
             document.getElementById('log-in').className = 'fa fa-sign-in';
+            document.querySelector('.icon-in').title = 'Войти';
             document.querySelector('.add-news-button').style.display = 'none';
             const arr = document.getElementsByClassName('button');
             for (let i = 0; i < arr.length; i += 1) {
