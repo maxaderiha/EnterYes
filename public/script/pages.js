@@ -3,7 +3,6 @@
 function mainPage() {
     requestModel.showContent('mainPage').then((code) => {
         document.getElementById('content-body').innerHTML = code;
-        amountLoadedArticles = 10;
         reloadNews();
     });
 }
