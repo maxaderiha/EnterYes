@@ -11,7 +11,6 @@ function authorizationPage() {
     requestModel.getUserName().then(
         () => {
             requestModel.logOut().then(() => {
-                mainPage();
                 addUserUI();
             });
         },
@@ -43,20 +42,7 @@ function closeErrorPage() {
     filterPage();
 }
 
-
 const options = {weekday: 'narrow', year: 'numeric', month: 'long', day: 'numeric'};
-
-function setScroll(param) {
-    localStorage.setItem('scroll', param);
-}
-
-function getScroll() {
-    return JSON.parse(localStorage.getItem('scroll'));
-}
-
-function removeScroll() {
-    localStorage.removeItem('scroll');
-}
 
 function addPage() {
     requestModel.showContent('addPage').then((code) => {

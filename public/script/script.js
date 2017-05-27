@@ -113,8 +113,10 @@ function showMore() {
 }
 
 function reloadNews() {
+    amountLoadedArticles = 10;
     articleRenderer.init();
     renderArticles(0, amountLoadedArticles, filter);
+    moveScrollUp();
 }
 
 document.addEventListener('DOMContentLoaded', startApp);

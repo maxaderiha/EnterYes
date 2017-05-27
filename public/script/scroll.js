@@ -32,6 +32,7 @@ window.onload = () => {
 };
 
 let t;
+let scrollFlag;
 
 function up() {
     const top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
@@ -42,4 +43,24 @@ function up() {
         }, 20);
     } else clearTimeout(t);
     return false;
+}
+
+function setScroll(param) {
+    localStorage.setItem('scroll', param);
+}
+
+function getScroll() {
+    return JSON.parse(localStorage.getItem('scroll'));
+}
+
+function removeScroll() {
+    localStorage.removeItem('scroll');
+}
+
+function moveScrollUp() {
+    if (scrollFlag) {
+        window.scrollTo(0, 0);
+        scrollFlag = false;
+    }
+
 }

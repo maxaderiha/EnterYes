@@ -6,6 +6,7 @@ function logIn() {
     requestModel.logIn({username, password}).then(
         () => {
             closeAuthorizationPage();
+            mainPageWithoutFilter();
             addUserUI();
         },
         () => {

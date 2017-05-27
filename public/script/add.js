@@ -15,7 +15,9 @@ function addPost() {
                 img: document.getElementById('add-photo').value || defaultImage,
             };
             if (articleModel.validateArticle(art)) {
-                requestModel.addArticle(art).then(() => mainPage());
+                requestModel.addArticle(art).then(() => {
+                    mainPageWithoutFilter();
+                });
             } else {
                 document.querySelector('.error-add').style.visibility = 'visible';
             }

@@ -45,8 +45,10 @@ function isValidDate(val) {
 function startFilter(filterConfig) {
     if (filterConfig) {
         filter = filterConfig;
+        scrollFlag = true;
         mainPage();
     } else if (getFilter()) {
+        scrollFlag = true;
         mainPage();
     } else {
         document.querySelector('.error-filter').innerHTML = error;
@@ -57,5 +59,6 @@ function startFilter(filterConfig) {
 
 function mainPageWithoutFilter() {
     filter = null;
+    scrollFlag = true;
     mainPage();
 }
