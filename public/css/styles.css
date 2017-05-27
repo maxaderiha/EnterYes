@@ -202,7 +202,7 @@ ul a {
 
 .form h2 {
     font: 20px 'Oswald', sans-serif;
-    color: rgba(242, 251, 255, 0.36);
+    color: #3C3F41;
 }
 
 .form button {
@@ -588,7 +588,7 @@ h2 {
     transition: 0.4s;
 }
 
-h2:hover {
+.content h2:hover {
     color: rgb(215, 212, 205)
 }
 
