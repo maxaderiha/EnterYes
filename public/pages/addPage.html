@@ -3,13 +3,13 @@
         <h2 align="center">Добавление новости</h2>
         <form class="add-form">
             <p>Заголовок:<br>
-                <input type="text" id="title-add"/></p>
+                <input type="text" placeholder="Не более 100 символов" id="title-add"/></p>
             <p>Описание:<br>
-                <textarea name="comment" id="content-add" cols="50" rows="15"></textarea></p>
+                <textarea name="comment"  placeholder="Не менее 200 символов" id="content-add" cols="50" rows="15"></textarea></p>
             <p>Теги:<br>
-                <input type="text" id="tags-add"/></p>
+                <input type="text" placeholder="#АВТО #СПОРТ #САММИТ #БИЗНЕС #НОВИНКИ" id="tags-add"/></p>
             <p>Фото:<br>
-                <input id="add-photo" type="text"></p>
+                <input id="add-photo" placeholder="Вставте ссылку на изображение" type="text"></p>
             <button type="button" onclick="addPost()">добавить</button>
             <p class="message"><a onclick="mainPage()">Назад</a></p>
             <p class="error-add">неверные данные</p>
