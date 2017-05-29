@@ -7,7 +7,7 @@ const SessionStore = require('connect-mongo')(session);
 const Users = require('./db.js').users;
 const Articles = require('./db.js').articles;
 
-const store = new SessionStore({url: 'mongodb://localhost/maxaderiha'});
+const store = new SessionStore({url: 'mongodb://admin:admin@ds155631.mlab.com:55631/maxaderiha'});
 const app = express();
 const bodyParser = require('body-parser');
 
